@@ -8,9 +8,10 @@ use App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces\Internal
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\UserContainer\Dependencies\Interfaces\InternalApiInterface as UserContainerApi;
+use App\Ship\Parents\Dependencies\AbstractInternalClient;
 use Symfony\Component\Uid\Uuid;
 
-class InternalClient implements InternalClientInterface
+class InternalClient extends AbstractInternalClient implements InternalClientInterface
 {
     private UserContainerApi $userServer;
 

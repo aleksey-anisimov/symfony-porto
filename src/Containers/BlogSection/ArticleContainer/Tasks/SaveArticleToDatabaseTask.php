@@ -6,9 +6,10 @@ namespace App\Containers\BlogSection\ArticleContainer\Tasks;
 
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
+use App\Ship\Parents\Tasks\AbstractTask;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SaveArticleToDatabaseTask implements SaveArticleTaskInterface
+class SaveArticleToDatabaseTask extends AbstractTask implements SaveArticleTaskInterface
 {
     private EntityManagerInterface $entityManager;
 
