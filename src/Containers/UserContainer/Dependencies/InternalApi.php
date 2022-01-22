@@ -7,9 +7,10 @@ namespace App\Containers\UserContainer\Dependencies;
 use App\Containers\UserContainer\Actions\Interfaces\GetUserByIdActionInterface;
 use App\Containers\UserContainer\Dependencies\Interfaces\InternalApiInterface;
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Ship\Parents\Dependencies\AbstractInternalApi;
 use Symfony\Component\Uid\Uuid;
 
-class InternalApi implements InternalApiInterface
+class InternalApi extends AbstractInternalApi implements InternalApiInterface
 {
     private GetUserByIdActionInterface $getUserByIdAction;
 

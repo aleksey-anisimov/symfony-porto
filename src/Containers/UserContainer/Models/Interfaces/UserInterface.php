@@ -8,7 +8,7 @@ use Symfony\Component\Uid\Uuid;
 
 interface UserInterface
 {
-    public function getUid(): Uuid;
+    public function getId(): Uuid;
 
     public function getEmail(): string;
 }
