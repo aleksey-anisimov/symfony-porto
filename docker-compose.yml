@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+    db:
+        container_name: db
+        image: postgres:13.4
+        ports:
+            - '5432:5432'
+        restart: always
+        volumes:
+            - ./docker/data/db:/var/lib/postgresql/data:delegated,rw
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        networks:
+            - symfony
+    php:
+        container_name: php
+        build: docker/php/
+        user: www-data
+        volumes:
+            - ./:/var/www/symfony:cached
+            - /etc/timezone:/etc/timezone:cached
+        networks:
+            - symfony
+        depends_on:
+            - db
+        environment:
+            PHP_IDE_CONFIG: 'serverName=docker'
+            XDEBUG_SESSION: 'PHPSTORM'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+    nginx:
+        container_name: nginx
+        build: docker/nginx/
+        ports:
+            - '8888:80'
+        volumes:
+            - ./:/var/www/symfony:cached
+        networks:
+            - symfony
+        depends_on:
+            - php
+
+networks:
+    symfony:
+        driver: bridge
