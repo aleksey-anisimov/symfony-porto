@@ -11,12 +11,12 @@ use Symfony\Component\Uid\Uuid;
 
 class GetAuthorByIdAction implements GetAuthorByIdActionInterface
 {
-    public function __construct(private InternalClientInterface $clientManager)
+    public function __construct(private InternalClientInterface $internalClient)
     {
     }
 
     public function run(Uuid $id): ?AuthorInterface
     {
-        return $this->clientManager->getUserById($id);
+        return $this->internalClient->getAuthorById($id);
     }
 }

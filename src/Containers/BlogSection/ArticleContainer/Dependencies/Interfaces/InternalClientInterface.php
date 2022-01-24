@@ -9,5 +9,5 @@ use Symfony\Component\Uid\Uuid;
 
 interface InternalClientInterface
 {
-    public function getUserById(Uuid $id): AuthorInterface;
+    public function getAuthorById(Uuid $id): AuthorInterface;
 }

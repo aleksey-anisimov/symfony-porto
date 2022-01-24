@@ -20,7 +20,7 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
         $this->userServer = $userServer;
     }
 
-    public function getUserById(Uuid $id): AuthorInterface
+    public function getAuthorById(Uuid $id): AuthorInterface
     {
         $user = $this->userServer->getUserById($id);
 

@@ -8,7 +8,7 @@ use App\Ship\Parents\Requests\AbstractRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ArticleCreateRequest extends AbstractRequest
+class CreateArticleRequest extends AbstractRequest
 {
     #[Assert\NotBlank]
     public ?string $title = null;

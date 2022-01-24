@@ -6,7 +6,7 @@ namespace App\Containers\BlogSection\ArticleContainer\UI\API\Controllers;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
-use App\Containers\BlogSection\ArticleContainer\UI\API\Requests\ArticleCreateRequest;
+use App\Containers\BlogSection\ArticleContainer\UI\API\Requests\CreateArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
 use App\Ship\Core\Abstracts\Validators\ValidatorInterface;
 use App\Ship\Parents\Controllers\AbstractApiController;
@@ -28,12 +28,12 @@ class CreateArticleController extends AbstractApiController
 
     public function __invoke(Request $request): ArticleInterface
     {
-        $data = ArticleCreateRequest::createFromRequest($request); // TODO: refactor it
-        $this->validator->validate($data);
+        $createArticleRequest = CreateArticleRequest::createFromRequest($request); // TODO: refactor it
+        $this->validator->validate($createArticleRequest);
 
         $articleValue = new ArticleValue();
-        $articleValue->title = $data->title;
-        $articleValue->text = $data->text;
+        $articleValue->title = $createArticleRequest->title;
+        $articleValue->text = $createArticleRequest->text;
         $articleValue->author = $this->getUser();
 
         return $this->createArticleAction->run($articleValue);
