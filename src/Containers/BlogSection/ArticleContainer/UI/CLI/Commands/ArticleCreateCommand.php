@@ -6,8 +6,8 @@ namespace App\Containers\BlogSection\ArticleContainer\UI\CLI\Commands;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetAuthorByIdActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Dependencies\UserContainer\ProxyActions\Interfaces\GetUserByIdProxyActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces\InternalClientInterface;
+use App\Containers\BlogSection\ArticleContainer\Dependencies\UserContainer\ProxyActions\Interfaces\GetUserByIdProxyActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
 use App\Containers\UserContainer\Actions\Interfaces\GetUserByIdActionInterface;
 use Symfony\Component\Console\Attribute\AsCommand;

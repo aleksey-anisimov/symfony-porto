@@ -19,6 +19,10 @@ interface TransactionInterface
 
     public function setDestination(AccountInterface $destination): TransactionInterface;
 
+    public function getComment(): string;
+
+    public function setComment(string $comment): TransactionInterface;
+
     public function getValue(): int; // TODO: refactor it
 
     public function setValue(int $value): TransactionInterface; // TODO: refactor it

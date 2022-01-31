@@ -14,8 +14,10 @@ use App\Ship\Parents\Actions\AbstractAction;
 
 class CreateWalletAction extends AbstractAction implements CreateWalletActionInterface
 {
-    public function __construct(private SaveWalletTaskInterface $saveWalletTask, private GetOwnerTaskInterface $getOwnerTask)
-    {
+    public function __construct(
+        private SaveWalletTaskInterface $saveWalletTask,
+        private GetOwnerTaskInterface $getOwnerTask
+    ) {
     }
 
     public function run(WalletValue $walletValue): WalletInterface

@@ -17,6 +17,8 @@ class Transaction extends AbstractModel implements TransactionInterface
 
     private AccountInterface $destination;
 
+    private string $comment = '';
+
     private int $value; // TODO: refactor it
 
     public function __construct(?Uuid $id = null)
@@ -49,6 +51,18 @@ class Transaction extends AbstractModel implements TransactionInterface
     public function setDestination(AccountInterface $destination): TransactionInterface
     {
         $this->destination = $destination;
+
+        return $this;
+    }
+
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): TransactionInterface
+    {
+        $this->comment = $comment;
 
         return $this;
     }

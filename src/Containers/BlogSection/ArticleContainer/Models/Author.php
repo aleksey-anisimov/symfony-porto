@@ -12,6 +12,8 @@ class Author extends AbstractModel implements AuthorInterface
 {
     private Uuid $id;
 
+    private string $firstName;
+
     public function __construct(?Uuid $id = null)
     {
         $this->id = $id ?: Uuid::v4();
