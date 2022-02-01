@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces;
 
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Containers\UserContainer\Events\UserRegistered;
 
 interface InternalEventSubscriberInterface
 {
-    public function onUserRegistered(UserInterface $user): void;
+    public function onUserRegistered(UserRegistered $event): void;
 }

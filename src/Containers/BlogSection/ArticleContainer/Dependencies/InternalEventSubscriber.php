@@ -8,7 +8,6 @@ use App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces\Internal
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveAuthorTaskInterface;
 use App\Containers\UserContainer\Events\UserRegistered;
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Ship\Parents\Dependencies\AbstractInternalEventSubscriber;
 
 class InternalEventSubscriber extends AbstractInternalEventSubscriber implements InternalEventSubscriberInterface
@@ -24,8 +23,9 @@ class InternalEventSubscriber extends AbstractInternalEventSubscriber implements
         ];
     }
 
-    public function onUserRegistered(UserInterface $user): void
+    public function onUserRegistered(UserRegistered $event): void
     {
+        $user = $event->getUser();
         $author = new Author($user->getId());
 
         $this->saveAuthorTask->run($author);
