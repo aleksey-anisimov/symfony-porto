@@ -22,6 +22,8 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
 
     protected AccountTypeEnum $type;
 
+    protected int $balance = 0;
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -66,5 +68,17 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
     public function getType(): AccountTypeEnum
     {
         return $this->type;
+    }
+
+    public function getBalance(): int
+    {
+        return $this->balance;
+    }
+
+    public function setBalance(int $balance): AccountInterface
+    {
+        $this->balance = $balance;
+
+        return $this;
     }
 }

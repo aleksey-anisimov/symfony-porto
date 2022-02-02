@@ -3,9 +3,10 @@
 namespace App\Containers\AccountingSection\AccountContainer\Dependencies;
 
 use App\Containers\AccountingSection\AccountContainer\Dependencies\Interfaces\InternalApiInterface;
+use App\Ship\Parents\Dependencies\AbstractInternalApi;
 use Symfony\Component\Uid\Uuid;
 
-class InternalApi implements InternalApiInterface
+class InternalApi extends AbstractInternalApi implements InternalApiInterface
 {
     public function isIncomingPaymentAllowed(Uuid $accountId): bool
     {

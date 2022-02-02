@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Containers\AccountingSection\TransactionContainer\Dependencies;
 
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
 use App\Containers\AccountingSection\TransactionContainer\Events\TransactionCreatedEvent;
+use App\Ship\Parents\Dependencies\AbstractInternalEventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class InternalEventDispatcher implements InternalEventDispatcherInterface
+class InternalEventDispatcher extends AbstractInternalEventDispatcher implements InternalEventDispatcherInterface
 {
     public function __construct(private EventDispatcherInterface $eventDispatcher)
     {
