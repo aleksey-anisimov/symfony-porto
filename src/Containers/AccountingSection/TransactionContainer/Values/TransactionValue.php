@@ -11,7 +11,7 @@ class TransactionValue extends AbstractValue
 {
     public Uuid $sourceId;
 
-    public Uuid $destination;
+    public Uuid $destinationId;
 
     public string $comment;
 

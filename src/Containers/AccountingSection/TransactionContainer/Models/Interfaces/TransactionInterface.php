@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\TransactionContainer\Models\Interfaces;
 
-use App\Ship\Parents\Models\Interfaces\AccountInterface;
 use Symfony\Component\Uid\Uuid;
 
 interface TransactionInterface

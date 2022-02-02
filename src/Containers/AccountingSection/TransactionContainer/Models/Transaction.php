@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\TransactionContainer\Models;
 
+use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\AccountInterface;
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Ship\Parents\Models\AbstractModel;
-use App\Ship\Parents\Models\Interfaces\AccountInterface;
 use Symfony\Component\Uid\Uuid;
 
 class Transaction extends AbstractModel implements TransactionInterface
