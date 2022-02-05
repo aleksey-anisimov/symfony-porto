@@ -28,6 +28,6 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
             throw new \Error(); // TODO: create UserNotFoundException
         }
 
-        return new Author($user->getUid());
+        return new Author($user->getId());
     }
 }
