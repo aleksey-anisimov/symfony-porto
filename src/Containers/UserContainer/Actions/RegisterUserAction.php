@@ -8,6 +8,7 @@ use App\Containers\UserContainer\Actions\Interfaces\RegisterUserActionInterface;
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
 use App\Containers\UserContainer\Tasks\Interfaces\CheckIsUserExistsTaskInterface;
+use App\Containers\UserContainer\Tasks\Interfaces\HashPasswordTaskInterface;
 use App\Containers\UserContainer\Tasks\Interfaces\SaveUserTaskInterface;
 use App\Containers\UserContainer\Tasks\Interfaces\SendUserRegisteredEventTaskInterface;
 use App\Containers\UserContainer\Values\UserValue;
@@ -17,8 +18,9 @@ class RegisterUserAction extends AbstractTask implements RegisterUserActionInter
 {
     public function __construct(
         private CheckIsUserExistsTaskInterface $checkIsUserExistsTask,
+        private HashPasswordTaskInterface $hashPasswordTask,
         private SaveUserTaskInterface $saveUserTask,
-        private SendUserRegisteredEventTaskInterface $sendUserRegisteredEventTask
+        private SendUserRegisteredEventTaskInterface $sendUserRegisteredEventTask,
     ) {
     }
 
@@ -30,7 +32,7 @@ class RegisterUserAction extends AbstractTask implements RegisterUserActionInter
 
         $user = new User();
         $user->setEmail($userValue->email);
-        $user->setPassword($userValue->password);
+        $user->setPassword($this->hashPasswordTask->run($userValue->password));
         $user->setRoles(['ROLE_USER']);
 
         $this->saveUserTask->run($user);

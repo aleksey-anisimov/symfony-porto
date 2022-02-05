@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\API\Controllers;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
+use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetAuthorByIdActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\UI\API\Requests\ArticleCreateRequest;
 use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
@@ -16,14 +17,11 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 #[AsController]
 class CreateArticleController extends AbstractApiController
 {
-    private CreateArticleActionInterface $createArticleAction;
-
-    private ValidatorInterface $validator;
-
-    public function __construct(CreateArticleActionInterface $createArticleAction, ValidatorInterface $validator)
-    {
-        $this->createArticleAction = $createArticleAction;
-        $this->validator = $validator;
+    public function __construct(
+        private CreateArticleActionInterface $createArticleAction,
+        private ValidatorInterface $validator,
+        private GetAuthorByIdActionInterface $getAuthorByIdAction
+    ) {
     }
 
     public function __invoke(Request $request): ArticleInterface
@@ -34,7 +32,9 @@ class CreateArticleController extends AbstractApiController
         $articleValue = new ArticleValue();
         $articleValue->title = $data->title;
         $articleValue->text = $data->text;
-        $articleValue->author = $this->getUser();
+
+        $securityUser = $this->getCurrentUser();
+        $articleValue->author = $this->getAuthorByIdAction->run($securityUser->getId());
 
         return $this->createArticleAction->run($articleValue);
     }
