@@ -30,8 +30,8 @@ class CreateArticleController extends AbstractApiController
         $this->validator->validate($createArticleRequest);
 
         $articleValue = new ArticleValue();
-        $articleValue->title = $data->title;
-        $articleValue->text = $data->text;
+        $articleValue->title = $createArticleRequest->title;
+        $articleValue->text = $createArticleRequest->text;
 
         $securityUser = $this->getCurrentUser();
         $articleValue->author = $this->getAuthorByIdAction->run($securityUser->getId());
