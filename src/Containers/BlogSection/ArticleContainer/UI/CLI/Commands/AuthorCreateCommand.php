@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: self::NAME,
-    description: 'Create article from cli',
+    description: 'Create author from cli',
 )]
 class AuthorCreateCommand extends Command // TODO: remove it. It be created for debug.
 {

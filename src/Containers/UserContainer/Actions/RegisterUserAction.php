@@ -32,7 +32,7 @@ class RegisterUserAction extends AbstractTask implements RegisterUserActionInter
 
         $user = new User();
         $user->setEmail($userValue->email);
-        $user->setPassword($this->hashPasswordTask->run($userValue->password));
+        $user->setPassword($this->hashPasswordTask->run($user, $userValue->password));
         $user->setRoles(['ROLE_USER']);
 
         $this->saveUserTask->run($user);

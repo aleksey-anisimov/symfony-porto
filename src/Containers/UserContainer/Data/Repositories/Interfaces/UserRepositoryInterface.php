@@ -10,4 +10,6 @@ use Symfony\Component\Uid\Uuid;
 interface UserRepositoryInterface
 {
     public function findById(Uuid $id): ?UserInterface;
+
+    public function findByEmail(string $email): ?UserInterface;
 }
