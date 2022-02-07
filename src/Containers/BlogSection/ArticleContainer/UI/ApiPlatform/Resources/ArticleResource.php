@@ -11,8 +11,10 @@ use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\Article
 use Symfony\Component\Uid\Uuid;
 
 #[ApiResource(
+    shortName: 'article',
     input: ArticleRequest::class,
-    output: ArticleResponse::class
+    output: ArticleResponse::class,
+    routePrefix: '/api-platform/blog'
 )]
 class ArticleResource
 {

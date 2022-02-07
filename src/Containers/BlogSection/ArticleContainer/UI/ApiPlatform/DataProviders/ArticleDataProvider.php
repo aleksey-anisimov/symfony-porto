@@ -35,7 +35,7 @@ class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareColl
     {
         $articles = $this->getArticlesAction->run();
 
-        return array_map(
+        return array_map( // TODO: use data transformer
             static function (ArticleInterface $article) {
                 return ArticleResource::fromModel($article);
             },
