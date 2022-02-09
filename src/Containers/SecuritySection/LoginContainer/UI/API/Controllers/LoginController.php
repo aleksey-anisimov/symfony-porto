@@ -13,9 +13,11 @@ use App\Ship\Core\Abstracts\Validators\ValidatorInterface;
 use App\Ship\Parents\Controllers\AbstractApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 #[AsController]
+#[Route(path: '/api/login', name: 'security_section_login_container_api_login', methods: ['POST'])]
 class LoginController extends AbstractApiController
 {
     public function __construct(private LoginActionInterface $loginAction, private ValidatorInterface $validator)

@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Containers\SecuritySection\LoginContainer\Models;
 
-use App\Containers\SecuritySection\LoginContainer\Models\Interfaces\UserInterface;
+use App\Containers\SecuritySection\LoginContainer\Models\Interfaces\SecurityUserInterface;
 use App\Ship\Parents\Models\AbstractModel;
 use Symfony\Component\Uid\Uuid;
 
-class User extends AbstractModel implements UserInterface
+class SecurityUser extends AbstractModel implements SecurityUserInterface
 {
     private Uuid $id;
 
-    private string $email;
+    private string $email = '';
 
     private array $roles = [];
 
-    private string $password;
+    private string $password = '';
 
     public function __construct(?Uuid $id = null)
     {
@@ -70,5 +70,14 @@ class User extends AbstractModel implements UserInterface
     public function getSalt(): ?string
     {
         return null;
+    }
+
+    public function eraseCredentials(): void
+    {
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getEmail();
     }
 }
