@@ -12,7 +12,8 @@ use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticlesAc
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\ArticleResource;
 
-class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface
+class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareCollectionDataProviderInterface,
+                                     RestrictedDataProviderInterface
 {
     public function __construct(
         private GetArticleActionInterface $getArticleAction,

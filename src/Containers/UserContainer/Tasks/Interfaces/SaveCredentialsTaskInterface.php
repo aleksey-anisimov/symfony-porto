@@ -6,7 +6,7 @@ namespace App\Containers\UserContainer\Tasks\Interfaces;
 
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 
-interface HashPasswordTaskInterface
+interface SaveCredentialsTaskInterface
 {
-    public function run(UserInterface $user, string $password): string;
+    public function run(UserInterface $user): void;
 }

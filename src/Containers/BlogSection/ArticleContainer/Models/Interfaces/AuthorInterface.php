@@ -9,4 +9,6 @@ use Symfony\Component\Uid\Uuid;
 interface AuthorInterface
 {
     public function getId(): Uuid;
+
+    public function getFirstname(): string;
 }

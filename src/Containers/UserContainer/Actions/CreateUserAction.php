@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace App\Containers\UserContainer\Actions;
 
-use App\Containers\UserContainer\Actions\Interfaces\RegisterUserActionInterface;
+use App\Containers\UserContainer\Actions\Interfaces\CreateUserActionInterface;
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
 use App\Containers\UserContainer\Tasks\Interfaces\CheckIsUserExistsTaskInterface;
-use App\Containers\UserContainer\Tasks\Interfaces\HashPasswordTaskInterface;
 use App\Containers\UserContainer\Tasks\Interfaces\SaveUserTaskInterface;
-use App\Containers\UserContainer\Tasks\Interfaces\SendUserRegisteredEventTaskInterface;
+use App\Containers\UserContainer\Tasks\Interfaces\SendUserCreatedEventTaskInterface;
+use App\Containers\UserContainer\Tasks\Interfaces\SendUserUpdatedEventTaskInterface;
 use App\Containers\UserContainer\Values\UserValue;
 use App\Ship\Parents\Tasks\AbstractTask;
 
-class RegisterUserAction extends AbstractTask implements RegisterUserActionInterface
+class CreateUserAction extends AbstractTask implements CreateUserActionInterface
 {
     public function __construct(
         private CheckIsUserExistsTaskInterface $checkIsUserExistsTask,
-        private HashPasswordTaskInterface $hashPasswordTask,
         private SaveUserTaskInterface $saveUserTask,
-        private SendUserRegisteredEventTaskInterface $sendUserRegisteredEventTask,
+        private SendUserUpdatedEventTaskInterface $sendUserUpdatedEventTask,
     ) {
     }
 
@@ -30,13 +29,12 @@ class RegisterUserAction extends AbstractTask implements RegisterUserActionInter
             // TODO: throw UserWithSameEmailAlreadyRegisteredException
         }
 
-        $user = new User();
+        $user = new User($userValue->id);
         $user->setEmail($userValue->email);
-        $user->setPassword($this->hashPasswordTask->run($user, $userValue->password));
-        $user->setRoles(['ROLE_USER']);
+        $user->setFirstname($userValue->firstname);
 
         $this->saveUserTask->run($user);
-        $this->sendUserRegisteredEventTask->run($user);
+        $this->sendUserUpdatedEventTask->run($user);
 
         return $user;
     }

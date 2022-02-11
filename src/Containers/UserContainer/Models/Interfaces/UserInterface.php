@@ -11,4 +11,6 @@ interface UserInterface
     public function getId(): Uuid;
 
     public function getEmail(): string;
+
+    public function getFirstname(): string;
 }

@@ -9,4 +9,8 @@ use Symfony\Component\Uid\Uuid;
 class UserPublic
 {
     public Uuid $id;
+
+    public string $email;
+
+    public string $firstname;
 }

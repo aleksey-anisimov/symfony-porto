@@ -7,7 +7,7 @@ namespace App\Containers\BlogSection\ArticleContainer\Dependencies;
 use App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces\InternalEventSubscriberInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveAuthorTaskInterface;
-use App\Containers\UserContainer\Events\UserRegisteredEvent;
+use App\Containers\UserContainer\Events\UserCreatedEvent;
 use App\Ship\Parents\Dependencies\AbstractInternalEventSubscriber;
 
 class InternalEventSubscriber extends AbstractInternalEventSubscriber implements InternalEventSubscriberInterface
@@ -19,11 +19,11 @@ class InternalEventSubscriber extends AbstractInternalEventSubscriber implements
     public static function getSubscribedEvents(): array
     {
         return [
-            UserRegisteredEvent::class => 'onUserRegistered',
+            UserCreatedEvent::class => 'onUserRegistered',
         ];
     }
 
-    public function onUserRegistered(UserRegisteredEvent $event): void
+    public function onUserRegistered(UserCreatedEvent $event): void
     {
         $user = $event->getUser();
         $author = new Author($user->id);

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces;
 
-use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
+use Symfony\Component\Uid\Uuid;
 
 interface SecurityUserInterface extends SymfonyUserInterface
 {

@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\UserContainer\Events;
+namespace App\Containers\UserContainer\Dependencies\Events;
 
 use App\Containers\UserContainer\Dependencies\Models\UserPublic;
+use App\Ship\Parents\Events\AbstractEvent;
 
-class UserRegisteredEvent
+class UserProfileUpdatedEvent extends AbstractEvent
 {
     private UserPublic $user;
 

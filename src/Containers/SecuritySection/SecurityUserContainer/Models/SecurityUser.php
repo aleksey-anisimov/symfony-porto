@@ -6,13 +6,14 @@ namespace App\Containers\SecuritySection\SecurityUserContainer\Models;
 
 use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
 use App\Ship\Parents\Models\AbstractModel;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
-use Symfony\Component\Uid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'security_section_security_user_container_security_user')]
-class SecurityUser extends AbstractModel implements SecurityUserInterface
+class SecurityUser extends AbstractModel implements SecurityUserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]

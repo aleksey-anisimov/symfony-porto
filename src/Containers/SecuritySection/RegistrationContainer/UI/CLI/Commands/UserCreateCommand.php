@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\UserContainer\UI\CLI\Commands;
+namespace App\Containers\SecuritySection\RegistrationContainer\UI\CLI\Commands;
 
-use App\Containers\UserContainer\Actions\RegisterUserAction;
-use App\Containers\UserContainer\Values\UserValue;
+use App\Containers\SecuritySection\RegistrationContainer\Actions\Interfaces\RegisterUserActionInterface;
+use App\Containers\SecuritySection\RegistrationContainer\Values\UserValue;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
@@ -20,9 +21,17 @@ class UserCreateCommand extends Command // TODO: remove it. It be created for de
     public const NAME = 'app:user:create';
 
     public function __construct(
-        private RegisterUserAction $registerUserAction
+        private RegisterUserActionInterface $registerUserAction
     ) {
         parent::__construct(self::NAME);
+    }
+
+    protected function configure(): void
+    {
+        $this
+            ->addOption('email', null, InputOption::VALUE_REQUIRED, 'Email')
+            ->addOption('password', null, InputOption::VALUE_REQUIRED, 'Password')
+            ->addOption('firstname', null, InputOption::VALUE_REQUIRED, 'firstname');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -30,6 +39,8 @@ class UserCreateCommand extends Command // TODO: remove it. It be created for de
         $userValue = new UserValue();
         $userValue->email = $input->getOption('email');
         $userValue->password = $input->getOption('password');
+        $userValue->firstname = $input->getOption('firstname');
+        $userValue->roles = ['ROLE_USER'];
 
         $this->registerUserAction->run($userValue);
 

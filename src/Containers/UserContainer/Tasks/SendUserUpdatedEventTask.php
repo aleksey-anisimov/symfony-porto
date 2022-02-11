@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Containers\UserContainer\Tasks;
 
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
-use App\Containers\UserContainer\Tasks\Interfaces\SendUserRegisteredEventTaskInterface;
+use App\Containers\UserContainer\Tasks\Interfaces\SendUserUpdatedEventTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
 
-class SendUserRegisteredEventTask extends AbstractTask implements SendUserRegisteredEventTaskInterface
+class SendUserUpdatedEventTask extends AbstractTask implements SendUserUpdatedEventTaskInterface
 {
     public function run(UserInterface $user): void
     {

@@ -6,7 +6,7 @@ namespace App\Containers\UserContainer\Tasks\Interfaces;
 
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 
-interface SendUserRegisteredEventTaskInterface
+interface SendUserUpdatedEventTaskInterface
 {
     public function run(UserInterface $user): void;
 }
