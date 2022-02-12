@@ -15,8 +15,8 @@ class SendUserRegisteredEventTaskTask extends AbstractTask implements SendUserRe
     {
     }
 
-    public function run(Uuid $id): bool
+    public function run(Uuid $id): void
     {
-        return $this->internalEventDispatcher->sendUserRegisteredEvent($id);
+        $this->internalEventDispatcher->sendUserRegisteredEvent($id);
     }
 }

@@ -20,7 +20,7 @@ class Author extends AbstractModel implements AuthorInterface
     #[ORM\Column(type: 'uuid', unique: true)]
     private Uuid $id;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable: true)]
     private string $firstname;
 
     public function __construct(?Uuid $id = null)

@@ -8,5 +8,5 @@ use Symfony\Component\Uid\Uuid;
 
 interface SendUserRegisteredEventTaskInterface
 {
-    public function run(Uuid $id): bool;
+    public function run(Uuid $id): void;
 }

@@ -8,5 +8,5 @@ use Symfony\Component\Uid\Uuid;
 
 interface InternalEventDispatcherInterface
 {
-    public function sendUserRegisteredEvent(Uuid $id): bool;
+    public function sendUserRegisteredEvent(Uuid $id): void;
 }

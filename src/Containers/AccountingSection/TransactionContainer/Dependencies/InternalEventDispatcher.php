@@ -5,18 +5,24 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\TransactionContainer\Dependencies;
 
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
-use App\Containers\AccountingSection\TransactionContainer\Events\TransactionCreatedEvent;
+use App\Containers\AccountingSection\TransactionContainer\Dependencies\Transformers\TransactionToPublicModelTransformer;
+use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Ship\Parents\Dependencies\AbstractInternalEventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class InternalEventDispatcher extends AbstractInternalEventDispatcher implements InternalEventDispatcherInterface
 {
-    public function __construct(private EventDispatcherInterface $eventDispatcher)
-    {
+    public function __construct(
+        protected MessageBusInterface $bus,
+        private TransactionToPublicModelTransformer $transformer
+    ) {
+        parent::__construct($this->bus);
     }
 
-    public function dispatchTransactionCreated(TransactionCreatedEvent $event): void
+    public function dispatchTransactionCreated(TransactionInterface $transaction): void
     {
-        $this->eventDispatcher->dispatch($event, TransactionCreatedEvent::NAME);
+        $transactionPublic = $this->transformer->toPublicModel($transaction);
+
+        $this->bus->dispatch($transactionPublic);
     }
 }

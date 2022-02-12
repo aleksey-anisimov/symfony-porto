@@ -2,35 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\AccountingSection\AccountContainer\Dependencies;
+namespace App\Containers\AccountingSection\AccountContainer\Dependencies\MessageHandlers;
 
 use App\Containers\AccountingSection\AccountContainer\Dependencies\Interfaces\InternalClientInterface;
-use App\Containers\AccountingSection\AccountContainer\Dependencies\Interfaces\InternalEventSubscriberInterface;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\GetAccountTaskInterface;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\SaveAccountTaskInterface;
-use App\Containers\AccountingSection\TransactionContainer\Events\TransactionCreatedEvent;
-use App\Ship\Parents\Dependencies\AbstractInternalEventSubscriber;
+use App\Containers\AccountingSection\TransactionContainer\Dependencies\Messages\TransactionCreatedMessage;
+use App\Ship\Parents\MessageHandlers\AbstractMessageHandler;
+use Symfony\Component\Messenger\MessageBusInterface;
 
-class InternalEventSubscriber extends AbstractInternalEventSubscriber implements InternalEventSubscriberInterface
+class TransactionCreatedMessageHandler extends AbstractMessageHandler
 {
     public function __construct(
+        private MessageBusInterface $bus,
         private InternalClientInterface $internalClient,
         private GetAccountTaskInterface $getAccountTask,
         private SaveAccountTaskInterface $saveAccountTask
     ) {
+        parent::__construct($this->bus);
     }
 
-    public static function getSubscribedEvents(): array
+    public function __invoke(TransactionCreatedMessage $message): void
     {
-        return [
-            TransactionCreatedEvent::class => 'onTransactionCreated',
-        ];
-    }
-
-    // TODO: refactor it
-    public function onTransactionCreated(TransactionCreatedEvent $event): void
-    {
-        $transaction = $event->getTransaction();
+        $transaction = $message->getTransaction();
         $source = $this->getAccountTask->run($transaction->sourceId);
         $sum = $this->internalClient->getTransactionsSum($transaction->sourceId);
         $source->setBalance($sum);
