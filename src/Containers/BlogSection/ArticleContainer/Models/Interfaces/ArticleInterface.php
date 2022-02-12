@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Models\Interfaces;
 
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Uid\Uuid;
 
 interface ArticleInterface
@@ -19,12 +17,6 @@ interface ArticleInterface
     public function getText(): string;
 
     public function setText(string $text): ArticleInterface;
-
-    public function getComments(): Collection;
-
-    public function addComment(CommentInterface $comment): ArticleInterface;
-
-    public function removeComment(CommentInterface $comment): ArticleInterface;
 
     public function getAuthor(): AuthorInterface;
 

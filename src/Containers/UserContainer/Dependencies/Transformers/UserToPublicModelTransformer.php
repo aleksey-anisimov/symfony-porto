@@ -13,6 +13,8 @@ class UserToPublicModelTransformer
     {
         $userPublic = new UserPublic();
         $userPublic->id = $user->getId();
+        $userPublic->email = $user->getEmail();
+        $userPublic->firstname = $user->getFirstname();
 
         return $userPublic;
     }

@@ -4,18 +4,27 @@ declare(strict_types=1);
 
 namespace App\Ship\Core\Security;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserInterface;
 use Symfony\Component\Uid\Uuid;
 
-class SecurityUser
+class SecurityUser implements JWTUserInterface
 {
     private Uuid $id;
 
     private array $roles;
 
-    public function __construct(UserInterface $user)
+    private string $email;
+
+    public function __construct(Uuid $uuid, $email, array $roles)
     {
-        $this->roles = $user->getRoles();
+        $this->id = $uuid;
+        $this->email = $email;
+        $this->roles = $roles;
+    }
+
+    public static function createFromPayload($username, array $payload): SecurityUser
+    {
+        return new self(Uuid::fromString($payload['id']), $username, $payload['roles']);
     }
 
     public function getId(): Uuid
@@ -26,5 +35,19 @@ class SecurityUser
     public function getRoles(): array
     {
         return $this->roles;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials(): void
+    {
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getEmail();
     }
 }

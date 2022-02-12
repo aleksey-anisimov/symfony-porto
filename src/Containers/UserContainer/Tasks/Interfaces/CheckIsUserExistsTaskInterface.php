@@ -6,5 +6,5 @@ namespace App\Containers\UserContainer\Tasks\Interfaces;
 
 interface CheckIsUserExistsTaskInterface
 {
-    public function run(string $email): void;
+    public function run(string $email): bool;
 }

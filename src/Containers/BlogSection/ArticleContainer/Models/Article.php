@@ -6,30 +6,37 @@ namespace App\Containers\BlogSection\ArticleContainer\Models;
 
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface;
 use App\Ship\Parents\Models\AbstractModel;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'blog_section_article_container_article')]
 class Article extends AbstractModel implements ArticleInterface
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[ORM\Column(type: 'uuid', unique: true)]
     private Uuid $id;
 
+    #[ORM\Column(type: 'string')]
     private ?string $title = null;
 
+    #[ORM\Column(type: 'text')]
     private ?string $text = null;
 
-    private Collection $comments;
-
+    #[ORM\ManyToOne(targetEntity: AuthorInterface::class)]
+    #[ORM\JoinColumn(nullable: false)]
     private AuthorInterface $author;
 
+    #[ORM\Column(type: 'boolean')]
     private bool $disabled = false;
 
     public function __construct(?Uuid $id = null)
     {
         $this->id = $id ?: Uuid::v4();
-        $this->comments = new ArrayCollection();
     }
 
     public function getId(): Uuid
@@ -57,25 +64,6 @@ class Article extends AbstractModel implements ArticleInterface
     public function setText(string $text): ArticleInterface
     {
         $this->text = $text;
-
-        return $this;
-    }
-
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(CommentInterface $comment): ArticleInterface
-    {
-        $this->comments->add($comment);
-
-        return $this;
-    }
-
-    public function removeComment(CommentInterface $comment): ArticleInterface
-    {
-        $this->comments->remove($comment);
 
         return $this;
     }

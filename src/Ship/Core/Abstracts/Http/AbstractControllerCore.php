@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Ship\Core\Abstracts\Http;
 
 use App\Ship\Core\Security\SecurityUser;
@@ -9,8 +11,6 @@ class AbstractControllerCore extends AbstractController
 {
     protected function getCurrentUser(): SecurityUser
     {
-        $user = $this->getUser();
-
-        return new SecurityUser($user);
+        return $this->getUser();
     }
 }

@@ -20,7 +20,7 @@ class SaveArticleToDatabaseTask extends AbstractTask implements SaveArticleTaskI
 
     public function run(ArticleInterface $article): void
     {
-        // TODO: create doctrine entities and save to database
-        $this->entityManager->flush();
+        $this->entityManager->persist($article);
+        $this->entityManager->flush($article);
     }
 }

@@ -8,20 +8,34 @@ use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountI
 use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
 use App\Containers\AccountingSection\AccountContainer\Values\AccountTypeEnum;
 use App\Ship\Parents\Models\AbstractModel;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Uid\Uuid;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'accounting_section_account_container_account')]
 abstract class AbstractAccount extends AbstractModel implements AccountInterface
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    #[ORM\Column(type: 'uuid', unique: true)]
     protected Uuid $id;
 
+    #[ORM\Column(type: 'string')]
     protected string $name = '';
 
+    #[ORM\Column(type: 'boolean')]
     protected bool $deleted = false;
 
+    #[ORM\ManyToOne(targetEntity: OwnerInterface::class)]
+    #[ORM\JoinColumn(nullable: false)]
     protected OwnerInterface $owner;
 
+    #[ORM\Column(type: 'string')]
     protected AccountTypeEnum $type;
 
+    #[ORM\Column(type: 'integer')]
     protected int $balance = 0;
 
     public function getId(): Uuid

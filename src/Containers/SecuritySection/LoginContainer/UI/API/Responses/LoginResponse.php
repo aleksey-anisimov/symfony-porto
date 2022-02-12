@@ -9,15 +9,10 @@ use App\Ship\Parents\Requests\AbstractRequest;
 
 class LoginResponse extends AbstractRequest
 {
-    private string $token;
+    public string $token;
 
     public function __construct(TokenValue $tokenValue)
     {
         $this->token = $tokenValue->getToken();
-    }
-
-    public function getToken(): string
-    {
-        return $this->token;
     }
 }

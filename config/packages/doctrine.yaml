@@ -10,26 +10,38 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            ArticleContainer:
+            accounting_section_account_container:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/Containers/AccountingSection/AccountContainer/Models'
+                prefix: App\Containers\AccountingSection\AccountContainer\Models
+                alias: accounting_section_account_container
+            accounting_section_transaction_container:
+                is_bundle: false
+                type: attribute
+                dir: '%kernel.project_dir%/src/Containers/AccountingSection/TransactionContainer/Models'
+                prefix: App\Containers\AccountingSection\TransactionContainer\Models
+                alias: accounting_section_transaction_container
+            blog_section_article_container:
                 is_bundle: false
                 type: attribute
                 dir: '%kernel.project_dir%/src/Containers/BlogSection/ArticleContainer/Models'
-                prefix: 'App\Containers\BlogSection\ArticleContainer\Models'
-                alias: ArticleContainer
-            CommentContainer:
+                prefix: App\Containers\BlogSection\ArticleContainer\Models
+                alias: blog_section_article_container
+            security_section_security_user_container:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Containers/BlogSection/CommentContainer/Models'
-                prefix: 'App\Containers\BlogSection\CommentContainer\Models'
-                alias: CommentContainer
-            UserContainer:
+                dir: '%kernel.project_dir%/src/Containers/SecuritySection/SecurityUserContainer/Models'
+                prefix: App\Containers\SecuritySection\SecurityUserContainer\Models
+                alias: security_section_security_user_container
+            user_container:
                 is_bundle: false
                 type: attribute
                 dir: '%kernel.project_dir%/src/Containers/UserContainer/Models'
-                prefix: 'App\Containers\UserContainer\Models'
-                alias: CommentContainer
+                prefix: App\Containers\UserContainer\Models
+                alias: user_container
         resolve_target_entities:
-            App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface: App\Containers\BlogSection\ArticleContainer\Models\Article
+            App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface: App\Containers\AccountingSection\AccountContainer\Models\Owner
+            App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\AccountInterface: App\Containers\AccountingSection\TransactionContainer\Models\Account
             App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface: App\Containers\BlogSection\ArticleContainer\Models\Author
-            App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface: App\Containers\BlogSection\CommentContainer\Models\Comment
-            App\Containers\UserContainer\Models\Interfaces\UserInterface: App\Containers\UserContainer\Models\User
+            App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface: App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser
