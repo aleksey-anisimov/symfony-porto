@@ -7,7 +7,6 @@ namespace App\Containers\BlogSection\CommentContainer\Tasks;
 use App\Containers\BlogSection\CommentContainer\Data\Repositories\Interfaces\AuthorRepositoryInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
-use Symfony\Component\Uid\Uuid;
 
 class GetAuthorByIdTask implements GetAuthorByIdTaskInterface
 {
@@ -15,7 +14,7 @@ class GetAuthorByIdTask implements GetAuthorByIdTaskInterface
     {
     }
 
-    public function run(Uuid $id): ?AuthorInterface
+    public function run(string $id): ?AuthorInterface
     {
         return $this->repository->findById($id);
     }

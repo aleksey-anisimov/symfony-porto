@@ -9,7 +9,6 @@ use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
 use App\Ship\Parents\Repositories\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
@@ -18,7 +17,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         parent::__construct($registry, User::class);
     }
 
-    public function findById(Uuid $id): ?UserInterface
+    public function findById(string $id): ?UserInterface
     {
         return $this->find($id);
     }

@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace App\Containers\SecuritySection\SecurityUserContainer\Models;
 
 use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'security_section_security_user_container_security_user')]
 class SecurityUser extends AbstractModel implements SecurityUserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'string', unique: true)]
+    private string $id;
 
     #[ORM\Column(type: 'string')]
     private string $email = '';
@@ -30,12 +27,12 @@ class SecurityUser extends AbstractModel implements SecurityUserInterface, Passw
     #[ORM\Column(type: 'string')]
     private string $password = '';
 
-    public function __construct(?Uuid $id = null)
+    public function __construct(?string $id = null)
     {
-        $this->id = $id ?: Uuid::v4();
+        $this->id = UuidGenerator::uuidString($id);
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

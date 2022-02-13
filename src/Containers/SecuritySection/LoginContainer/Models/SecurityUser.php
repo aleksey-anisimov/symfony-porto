@@ -6,15 +6,14 @@ namespace App\Containers\SecuritySection\LoginContainer\Models;
 
 use App\Containers\SecuritySection\LoginContainer\Models\Interfaces\SecurityUserInterface;
 use App\Ship\Parents\Models\AbstractModel;
-use Symfony\Component\Uid\Uuid;
 
 class SecurityUser extends AbstractModel implements SecurityUserInterface
 {
-    public function __construct(private ?Uuid $id, private string $email, private array $roles)
+    public function __construct(private ?string $id, private string $email, private array $roles)
     {
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

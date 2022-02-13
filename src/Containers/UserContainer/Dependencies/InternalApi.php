@@ -12,7 +12,6 @@ use App\Containers\UserContainer\Dependencies\Transformers\UserToPublicModelTran
 use App\Containers\UserContainer\Dependencies\Values\CreateUserValue;
 use App\Containers\UserContainer\Values\UserValue;
 use App\Ship\Parents\Dependencies\AbstractInternalApi;
-use Symfony\Component\Uid\Uuid;
 
 class InternalApi extends AbstractInternalApi implements InternalApiInterface
 {
@@ -23,7 +22,7 @@ class InternalApi extends AbstractInternalApi implements InternalApiInterface
     ) {
     }
 
-    public function getUserById(Uuid $id): ?UserPublic
+    public function getUserById(string $id): ?UserPublic
     {
         $user = $this->getUserByIdAction->run($id);
 

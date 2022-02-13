@@ -9,7 +9,6 @@ use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\Secur
 use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
 use App\Ship\Parents\Repositories\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
 
 class SecurityUserRepository extends AbstractRepository implements SecurityUserRepositoryInterface
 {
@@ -18,7 +17,7 @@ class SecurityUserRepository extends AbstractRepository implements SecurityUserR
         parent::__construct($registry, SecurityUser::class);
     }
 
-    public function findById(Uuid $id): ?SecurityUserInterface
+    public function findById(string $id): ?SecurityUserInterface
     {
         return $this->find($id);
     }

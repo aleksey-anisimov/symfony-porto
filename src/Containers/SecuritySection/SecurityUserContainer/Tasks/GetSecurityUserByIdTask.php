@@ -8,7 +8,6 @@ use App\Containers\SecuritySection\SecurityUserContainer\Data\Repositories\Inter
 use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
 use App\Containers\SecuritySection\SecurityUserContainer\Tasks\Interfaces\GetSecurityUserByIdTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
-use Symfony\Component\Uid\Uuid;
 
 class GetSecurityUserByIdTask extends AbstractTask implements GetSecurityUserByIdTaskInterface
 {
@@ -16,7 +15,7 @@ class GetSecurityUserByIdTask extends AbstractTask implements GetSecurityUserByI
     {
     }
 
-    public function run(Uuid $id): ?SecurityUser
+    public function run(string $id): ?SecurityUser
     {
         return $this->repository->findById($id);
     }

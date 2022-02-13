@@ -9,7 +9,6 @@ use App\Containers\BlogSection\CommentContainer\Models\Author;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface;
 use App\Ship\Parents\Repositories\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
 
 class ArticleRepository extends AbstractRepository implements ArticleRepositoryInterface
 {
@@ -18,7 +17,7 @@ class ArticleRepository extends AbstractRepository implements ArticleRepositoryI
         parent::__construct($registry, Author::class);
     }
 
-    public function findById(Uuid $id): ?ArticleInterface
+    public function findById(string $id): ?ArticleInterface
     {
         return $this->find($id);
     }

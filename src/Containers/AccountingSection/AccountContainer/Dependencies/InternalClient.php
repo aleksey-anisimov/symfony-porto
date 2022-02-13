@@ -7,7 +7,6 @@ namespace App\Containers\AccountingSection\AccountContainer\Dependencies;
 use App\Containers\AccountingSection\AccountContainer\Dependencies\Interfaces\InternalClientInterface;
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interfaces\InternalApiInterface as TransactionContainerApi;
 use App\Ship\Parents\Dependencies\AbstractInternalClient;
-use Symfony\Component\Uid\Uuid;
 
 class InternalClient extends AbstractInternalClient implements InternalClientInterface
 {
@@ -15,7 +14,7 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
     {
     }
 
-    public function getTransactionsSum(Uuid $accountId): int
+    public function getTransactionsSum(string $accountId): int
     {
         return $this->transactionServer->getTransactionsSum($accountId);
     }

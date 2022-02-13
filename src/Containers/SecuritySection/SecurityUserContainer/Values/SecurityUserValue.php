@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Containers\SecuritySection\SecurityUserContainer\Values;
 
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Values\AbstractValue;
-use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SecurityUserValue extends AbstractValue
 {
-    private Uuid $id;
+    private string $id;
 
     #[NotBlank]
     #[Email]
@@ -20,14 +20,14 @@ class SecurityUserValue extends AbstractValue
     #[NotBlank]
     private string $password;
 
-    public function __construct(?Uuid $id, string $email, string $password)
+    public function __construct(?string $id, string $email, string $password)
     {
-        $this->id = $id ?: Uuid::v4();
+        $this->id = UuidGenerator::uuidString($id);
         $this->email = $email;
         $this->password = $password;
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

@@ -19,7 +19,6 @@ use App\Containers\SecuritySection\SecurityUserContainer\Values\CredentialsValue
 use App\Containers\SecuritySection\SecurityUserContainer\Values\IdentityValue as Identity;
 use App\Containers\SecuritySection\SecurityUserContainer\Values\SecurityUserValue as SecurityUser;
 use App\Ship\Parents\Dependencies\AbstractInternalApi;
-use Symfony\Component\Uid\Uuid;
 
 class InternalApi extends AbstractInternalApi implements InternalApiInterface
 {
@@ -58,7 +57,7 @@ class InternalApi extends AbstractInternalApi implements InternalApiInterface
         return $this->createSecurityUserAction->run($securityUser);
     }
 
-    public function getSecurityUserById(Uuid $id): ?SecurityUserPublic
+    public function getSecurityUserById(string $id): ?SecurityUserPublic
     {
         $securityUser = $this->getSecurityUserByIdTask->run($id);
 

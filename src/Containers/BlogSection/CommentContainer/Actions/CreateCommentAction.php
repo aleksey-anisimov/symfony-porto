@@ -13,13 +13,13 @@ use App\Ship\Parents\Actions\AbstractAction;
 
 class CreateCommentAction extends AbstractAction implements CreateCommentActionInterface
 {
-    private function __construct(private SaveCommentTaskInterface $saveCommentTask)
+    public function __construct(private SaveCommentTaskInterface $saveCommentTask)
     {
     }
 
     public function run(CommentValue $commentValue): CommentInterface
     {
-        $comment = new Comment(null, $commentValue->text, $commentValue->author, $commentValue->author);
+        $comment = new Comment(null, $commentValue->text, $commentValue->author, $commentValue->article);
 
         $this->saveCommentTask->run($comment);
 

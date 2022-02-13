@@ -8,7 +8,6 @@ use App\Containers\UserContainer\Actions\Interfaces\GetUserByIdActionInterface;
 use App\Containers\UserContainer\Data\Repositories\Interfaces\UserRepositoryInterface;
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
-use Symfony\Component\Uid\Uuid;
 
 class GetUserByIdAction extends AbstractTask implements GetUserByIdActionInterface
 {
@@ -19,7 +18,7 @@ class GetUserByIdAction extends AbstractTask implements GetUserByIdActionInterfa
         $this->userRepository = $userRepository;
     }
 
-    public function run(Uuid $id): ?UserInterface
+    public function run(string $id): ?UserInterface
     {
         return $this->userRepository->find($id);
     }

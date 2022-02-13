@@ -7,20 +7,17 @@ namespace App\Containers\BlogSection\CommentContainer\Models;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface;
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'blog_section_comment_container_comment')]
 class Comment extends AbstractModel implements CommentInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'string', unique: true)]
+    private string $id;
 
     #[ORM\Column(type: 'string')]
     private string $text;
@@ -33,15 +30,15 @@ class Comment extends AbstractModel implements CommentInterface
     #[ORM\JoinColumn(nullable: false)]
     private ArticleInterface $article;
 
-    public function __construct(?Uuid $id, string $text, AuthorInterface $author, ArticleInterface $article)
+    public function __construct(?string $id, string $text, AuthorInterface $author, ArticleInterface $article)
     {
-        $this->id = $id ?: Uuid::v4();
+        $this->id = UuidGenerator::uuidString($id);
         $this->text = $text;
         $this->author = $author;
         $this->article = $article;
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

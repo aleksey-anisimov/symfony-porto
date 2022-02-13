@@ -10,8 +10,8 @@ use App\Containers\SecuritySection\RegistrationContainer\Tasks\Interfaces\SaveCr
 use App\Containers\SecuritySection\RegistrationContainer\Tasks\Interfaces\SaveUserProfileTaskInterface;
 use App\Containers\SecuritySection\RegistrationContainer\Tasks\Interfaces\SendUserRegisteredEventTaskInterface;
 use App\Containers\SecuritySection\RegistrationContainer\Values\UserValue;
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Tasks\AbstractTask;
-use Symfony\Component\Uid\Uuid;
 
 class RegisterUserAction extends AbstractTask implements RegisterUserActionInterface
 {
@@ -25,7 +25,7 @@ class RegisterUserAction extends AbstractTask implements RegisterUserActionInter
 
     public function run(UserValue $userValue): bool
     {
-        $userValue->id = $userValue->id ?: Uuid::v4();
+        $userValue->id = UuidGenerator::uuidString($userValue->id);
         $userValue->roles = ['ROLE_USER'];
 
         if ($this->checkUserExistenceTask->run($userValue)) {

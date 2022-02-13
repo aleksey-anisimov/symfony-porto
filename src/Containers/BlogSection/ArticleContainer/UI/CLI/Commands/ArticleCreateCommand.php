@@ -12,7 +12,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Uid\Uuid;
 
 #[AsCommand(
     name: self::NAME,
@@ -43,8 +42,7 @@ class ArticleCreateCommand extends Command
         $articleValue->title = $input->getOption('title');
         $articleValue->text = $input->getOption('text');
 
-        $authorId = Uuid::fromString($input->getOption('authorId'));
-        $articleValue->author = $this->getAuthorByIdAction->run($authorId);
+        $articleValue->author = $this->getAuthorByIdAction->run($input->getOption('authorId'));
 
         $this->createArticleAction->run($articleValue);
 
