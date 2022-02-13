@@ -9,7 +9,7 @@ use Symfony\Component\Uid\Uuid;
 
 class IdentityValue extends AbstractValue
 {
-    public Uuid $id;
+    public ?Uuid $id = null;
 
-    public string $email;
+    public ?string $email = null;
 }

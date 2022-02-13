@@ -13,9 +13,5 @@ interface SecurityUserInterface extends SymfonyUserInterface
 
     public function getEmail(): string;
 
-    public function setEmail(string $email): SecurityUserInterface;
-
     public function getRoles(): array;
-
-    public function setRoles(array $roles): SecurityUserInterface;
 }
