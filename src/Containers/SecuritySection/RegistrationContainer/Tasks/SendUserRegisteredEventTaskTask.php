@@ -7,7 +7,6 @@ namespace App\Containers\SecuritySection\RegistrationContainer\Tasks;
 use App\Containers\SecuritySection\RegistrationContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
 use App\Containers\SecuritySection\RegistrationContainer\Tasks\Interfaces\SendUserRegisteredEventTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
-use Symfony\Component\Uid\Uuid;
 
 class SendUserRegisteredEventTaskTask extends AbstractTask implements SendUserRegisteredEventTaskInterface
 {
@@ -15,7 +14,7 @@ class SendUserRegisteredEventTaskTask extends AbstractTask implements SendUserRe
     {
     }
 
-    public function run(Uuid $id): void
+    public function run(string $id): void
     {
         $this->internalEventDispatcher->sendUserRegisteredEvent($id);
     }

@@ -7,7 +7,6 @@ namespace App\Containers\BlogSection\ArticleContainer\Actions;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetAuthorByIdActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Data\Repositories\Interfaces\AuthorRepositoryInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
-use Symfony\Component\Uid\Uuid;
 
 class GetAuthorByIdAction implements GetAuthorByIdActionInterface
 {
@@ -15,7 +14,7 @@ class GetAuthorByIdAction implements GetAuthorByIdActionInterface
     {
     }
 
-    public function run(Uuid $id): ?AuthorInterface
+    public function run(string $id): ?AuthorInterface
     {
         return $this->repository->findById($id);
     }

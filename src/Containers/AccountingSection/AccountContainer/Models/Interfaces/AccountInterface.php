@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\AccountContainer\Models\Interfaces;
 
 use App\Containers\AccountingSection\AccountContainer\Values\AccountTypeEnum;
-use Symfony\Component\Uid\Uuid;
 
 interface AccountInterface
 {
-    public function getId(): Uuid;
+    public function getId(): string;
 
     public function getName(): string;
 

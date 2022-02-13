@@ -8,7 +8,6 @@ use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interface
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\GetAccountTaskInterface;
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\GetTransactionsSumTaskInterface;
 use App\Ship\Parents\Dependencies\AbstractInternalApi;
-use Symfony\Component\Uid\Uuid;
 
 class InternalApi extends AbstractInternalApi implements InternalApiInterface
 {
@@ -18,7 +17,7 @@ class InternalApi extends AbstractInternalApi implements InternalApiInterface
     ) {
     }
 
-    public function getTransactionsSum(Uuid $accountId): int
+    public function getTransactionsSum(string $accountId): int
     {
         $account = $this->getAccountTask->run($accountId);
 

@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace App\Containers\UserContainer\Models;
 
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user_container_user')]
 class User extends AbstractModel implements UserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'string', unique: true)]
+    private string $id;
 
     #[ORM\Column(type: 'string')]
     private string $email;
@@ -26,12 +23,12 @@ class User extends AbstractModel implements UserInterface
     #[ORM\Column(type: 'string')]
     private string $firstname;
 
-    public function __construct(?Uuid $id = null)
+    public function __construct(?string $id = null)
     {
-        $this->id = $id ?: Uuid::v4();
+        $this->id = UuidGenerator::uuidString($id);
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

@@ -8,7 +8,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Containers\BlogSection\ArticleContainer\Models\Article as ArticleModel;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests\ArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\ArticleResponse;
-use Symfony\Component\Uid\Uuid;
 
 #[ApiResource(
     shortName: 'article',
@@ -18,13 +17,13 @@ use Symfony\Component\Uid\Uuid;
 )]
 class ArticleResource
 {
-    public ?Uuid $id = null;
+    public ?string $id = null;
 
     public ?string $title = null;
 
     public ?string $text = null;
 
-    public ?Uuid $authorId = null;
+    public ?string $authorId = null;
 
     public static function fromModel(ArticleModel $articleModel): self
     {

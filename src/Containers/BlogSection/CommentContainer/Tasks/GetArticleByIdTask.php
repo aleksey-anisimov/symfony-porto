@@ -7,7 +7,6 @@ namespace App\Containers\BlogSection\CommentContainer\Tasks;
 use App\Containers\BlogSection\CommentContainer\Data\Repositories\Interfaces\ArticleRepositoryInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\GetArticleByIdTaskInterface;
-use Symfony\Component\Uid\Uuid;
 
 class GetArticleByIdTask implements GetArticleByIdTaskInterface
 {
@@ -15,7 +14,7 @@ class GetArticleByIdTask implements GetArticleByIdTaskInterface
     {
     }
 
-    public function run(Uuid $id): ?ArticleInterface
+    public function run(string $id): ?ArticleInterface
     {
         return $this->repository->findById($id);
     }

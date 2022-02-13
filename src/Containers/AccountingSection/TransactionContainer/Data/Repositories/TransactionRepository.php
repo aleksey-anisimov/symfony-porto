@@ -8,7 +8,6 @@ use App\Containers\AccountingSection\TransactionContainer\Data\Repositories\Inte
 use App\Containers\AccountingSection\TransactionContainer\Models\Transaction;
 use App\Ship\Parents\Repositories\AbstractRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
 
 class TransactionRepository extends AbstractRepository implements TransactionRepositoryInterface
 {
@@ -17,7 +16,7 @@ class TransactionRepository extends AbstractRepository implements TransactionRep
         parent::__construct($registry, Transaction::class);
     }
 
-    public function getTransactionsSum(Uuid $accountId): int
+    public function getTransactionsSum(string $accountId): int
     {
         // TODO: write query
         return 0;

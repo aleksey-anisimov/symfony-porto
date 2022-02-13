@@ -19,7 +19,7 @@ class CreateCommentAction extends AbstractAction implements CreateCommentActionI
 
     public function run(CommentValue $commentValue): CommentInterface
     {
-        $comment = new Comment(null, $commentValue->text, $commentValue->author, $commentValue->author);
+        $comment = new Comment(null, $commentValue->text, $commentValue->author, $commentValue->article);
 
         $this->saveCommentTask->run($comment);
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\CommentContainer\Values;
 
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Ship\Parents\Values\AbstractValue;
 
 class CommentValue extends AbstractValue

@@ -6,20 +6,17 @@ namespace App\Containers\AccountingSection\TransactionContainer\Models;
 
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\AccountInterface;
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
+use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'accounting_section_transaction_container_transaction')]
 class Transaction extends AbstractModel implements TransactionInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
-    #[ORM\Column(type: 'uuid', unique: true)]
-    private Uuid $id;
+    #[ORM\Column(type: 'string', unique: true)]
+    private string $id;
 
     #[ORM\ManyToOne(targetEntity: AccountInterface::class)]
     #[ORM\JoinColumn(name: 'source_account_id', nullable: false)]
@@ -35,12 +32,12 @@ class Transaction extends AbstractModel implements TransactionInterface
     #[ORM\Column(type: 'integer')]
     private int $value; // TODO: refactor it
 
-    public function __construct(?Uuid $id = null)
+    public function __construct(?string $id = null)
     {
-        $this->id = $id ?: Uuid::v4();
+        $this->id = UuidGenerator::uuidString($id);
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

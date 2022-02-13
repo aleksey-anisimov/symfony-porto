@@ -9,7 +9,6 @@ use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\UserContainer\Dependencies\Interfaces\InternalApiInterface as UserContainerApi;
 use App\Ship\Parents\Dependencies\AbstractInternalClient;
-use Symfony\Component\Uid\Uuid;
 
 class InternalClient extends AbstractInternalClient implements InternalClientInterface
 {
@@ -20,7 +19,7 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
         $this->userServer = $userServer;
     }
 
-    public function getAuthorById(Uuid $id): AuthorInterface
+    public function getAuthorById(string $id): AuthorInterface
     {
         $user = $this->userServer->getUserById($id);
 
