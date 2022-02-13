@@ -5,6 +5,7 @@ framework:
         transports:
             failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
+            async: 'doctrine://default?queue_name=default'
 
         routing:
             App\Containers\AccountingSection\TransactionContainer\Dependencies\Messages\TransactionCreatedMessage: sync
