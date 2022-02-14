@@ -24,6 +24,8 @@ class TransactionCreatedMessageHandler extends AbstractMessageHandler
 
     public function __invoke(TransactionCreatedMessage $message): void
     {
+        // TODO: use actions like in controllers
+        // TODO: put balance in TransactionCreatedMessage and don't use internal client
         $transaction = $message->getTransaction();
         $source = $this->getAccountTask->run($transaction->sourceId);
         $sum = $this->internalClient->getTransactionsSum($transaction->sourceId);

@@ -19,6 +19,7 @@ class SecurityUserCreatedMessageHandler extends AbstractMessageHandler
 
     public function __invoke(SecurityUserCreatedMessage $message)
     {
+        // TODO: use actions like in controllers
         $owner = new Owner($message->getSecurityUserId());
 
         $this->saveAuthorTask->run($owner);
