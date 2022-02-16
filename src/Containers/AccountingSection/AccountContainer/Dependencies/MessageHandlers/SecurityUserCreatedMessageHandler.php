@@ -19,8 +19,7 @@ class SecurityUserCreatedMessageHandler extends AbstractMessageHandler
 
     public function __invoke(SecurityUserCreatedMessage $message)
     {
-        $createOwnerValue = new CreateOwnerValue();
-        $createOwnerValue->id = $message->getSecurityUserId();
+        $createOwnerValue = new CreateOwnerValue($message->getSecurityUserId());
 
         $this->createOrUpdateOwnerAction->run($createOwnerValue);
     }

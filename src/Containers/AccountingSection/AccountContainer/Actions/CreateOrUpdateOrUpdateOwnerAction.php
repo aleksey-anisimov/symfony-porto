@@ -22,7 +22,7 @@ class CreateOrUpdateOrUpdateOwnerAction extends AbstractAction implements Create
 
     public function run(CreateOwnerValue $ownerValue): OwnerInterface
     {
-        $owner = $this->getOwnerTask->run($ownerValue->id) ?: new Owner($ownerValue->id);
+        $owner = $this->getOwnerTask->run($ownerValue->getId()) ?: new Owner($ownerValue->getId());
 
         $this->saveOwnerTask->run($owner);
 

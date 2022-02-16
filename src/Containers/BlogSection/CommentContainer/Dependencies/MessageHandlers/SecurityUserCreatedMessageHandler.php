@@ -19,8 +19,7 @@ class SecurityUserCreatedMessageHandler extends AbstractMessageHandler
 
     public function __invoke(SecurityUserCreatedMessage $message)
     {
-        $authorValue = new AuthorValue();
-        $authorValue->id = $message->getSecurityUserId();
+        $authorValue = new AuthorValue($message->getSecurityUserId());
 
         $this->createOrUpdateAuthorAction->run($authorValue);
     }

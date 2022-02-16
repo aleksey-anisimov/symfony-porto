@@ -24,8 +24,8 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
     public function checkCredentialsExistence(UserValue $userValue): bool
     {
         $identityValue = new IdentityValue();
-        $identityValue->id = $userValue->id;
-        $identityValue->email = $userValue->email;
+        $identityValue->id = $userValue->getId();
+        $identityValue->email = $userValue->getEmail();
 
         return $this->securityUserContainerApi->checkUserExistence($identityValue);
     }
@@ -33,10 +33,10 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
     public function createCredentials(UserValue $userValue): bool
     {
         $securityUserValue = new SecurityUserValue();
-        $securityUserValue->id = $userValue->id;
-        $securityUserValue->email = $userValue->email;
-        $securityUserValue->password = $userValue->password;
-        $securityUserValue->roles = $userValue->roles;
+        $securityUserValue->id = $userValue->getId();
+        $securityUserValue->email = $userValue->getEmail();
+        $securityUserValue->password = $userValue->getPassword();
+        $securityUserValue->roles = $userValue->getRoles();
 
         return $this->securityUserContainerApi->createSecurityUser($securityUserValue);
     }
@@ -44,9 +44,9 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
     public function createUserProfile(UserValue $userValue): bool
     {
         $createUserValue = new CreateUserValue();
-        $createUserValue->id = $userValue->id;
-        $createUserValue->email = $userValue->email;
-        $createUserValue->firstname = $userValue->firstname;
+        $createUserValue->id = $userValue->getId();
+        $createUserValue->email = $userValue->getEmail();
+        $createUserValue->firstname = $userValue->getFirstname();
 
         return $this->userContainerApi->createUser($createUserValue);
     }

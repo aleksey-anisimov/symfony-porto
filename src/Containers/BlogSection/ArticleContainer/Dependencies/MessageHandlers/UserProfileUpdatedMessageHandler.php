@@ -21,9 +21,7 @@ class UserProfileUpdatedMessageHandler extends AbstractMessageHandler
     public function __invoke(UserProfileUpdatedMessage $message)
     {
         $user = $message->getUser();
-        $authorValue = new AuthorValue();
-        $authorValue->id = $user->id;
-        $authorValue->firstname = $user->firstname;
+        $authorValue = new AuthorValue($user->id, $user->firstname);
 
         $this->createOrUpdateAuthorAction->run($authorValue);
     }

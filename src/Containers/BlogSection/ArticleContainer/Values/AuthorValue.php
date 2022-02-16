@@ -8,7 +8,17 @@ use App\Ship\Parents\Values\AbstractValue;
 
 class AuthorValue extends AbstractValue
 {
-    public string $id;
+    public function __construct(private string $id, private ?string $firstname = null)
+    {
+    }
 
-    public ?string $firstname = null;
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
 }

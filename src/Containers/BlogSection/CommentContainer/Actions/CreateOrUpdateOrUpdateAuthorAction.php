@@ -22,8 +22,8 @@ class CreateOrUpdateOrUpdateAuthorAction extends AbstractAction implements Creat
 
     public function run(AuthorValue $authorValue): AuthorInterface
     {
-        $author = $this->getAuthorByIdAction->run($authorValue->id) ?: new Author($authorValue->id);
-        $author->setFirstname($authorValue->firstname);
+        $author = $this->getAuthorByIdAction->run($authorValue->getId()) ?: new Author($authorValue->getId());
+        $author->setFirstname($authorValue->getFirstname());
 
         $this->saveAuthorTask->run($author);
 

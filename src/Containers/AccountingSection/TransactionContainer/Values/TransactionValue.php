@@ -8,11 +8,31 @@ use App\Ship\Parents\Values\AbstractValue;
 
 class TransactionValue extends AbstractValue
 {
-    public string $sourceId;
+    public function __construct(
+        private string $sourceId,
+        private string $destinationId,
+        private string $comment,
+        private int $value
+    ) {
+    }
 
-    public string $destinationId;
+    public function getSourceId(): string
+    {
+        return $this->sourceId;
+    }
 
-    public string $comment;
+    public function getDestinationId(): string
+    {
+        return $this->destinationId;
+    }
 
-    public int $value;
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
+
+    public function getValue(): int
+    {
+        return $this->value;
+    }
 }

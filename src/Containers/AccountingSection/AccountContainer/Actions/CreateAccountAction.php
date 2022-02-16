@@ -25,9 +25,9 @@ class CreateAccountAction extends AbstractAction implements CreateAccountActionI
 
     public function run(AccountValue $accountValue): AccountInterface
     {
-        $account = $this->createAccountByType($accountValue->type);
-        $account->setName($accountValue->name);
-        $account->setOwner($this->getOwnerTask->run($accountValue->ownerId));
+        $account = $this->createAccountByType($accountValue->getType());
+        $account->setName($accountValue->getName());
+        $account->setOwner($this->getOwnerTask->run($accountValue->getOwnerId()));
 
         $this->saveWalletTask->run($account);
 

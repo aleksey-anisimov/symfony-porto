@@ -7,24 +7,24 @@ namespace App\Containers\BlogSection\ArticleContainer\Actions;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
-use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
+use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
 
 class CreateArticleAction implements CreateArticleActionInterface
 {
-    private SaveArticleTaskInterface $saveArticleTask;
-
-    public function __construct(SaveArticleTaskInterface $saveArticleTask)
-    {
-        $this->saveArticleTask = $saveArticleTask;
+    public function __construct(
+        private GetAuthorByIdTaskInterface $getAuthorByIdTask,
+        private SaveArticleTaskInterface $saveArticleTask
+    ) {
     }
 
-    public function run(ArticleValue $articleValue): ArticleInterface
+    public function run(CreateArticleValue $articleValue): ArticleInterface
     {
         $article = new Article();
-        $article->setTitle($articleValue->title);
-        $article->setText($articleValue->text);
-        $article->setAuthor($articleValue->author);
+        $article->setTitle($articleValue->getTitle());
+        $article->setText($articleValue->getText());
+        $article->setAuthor($this->getAuthorByIdTask->run($articleValue->getAuthorId()));
 
         $this->saveArticleTask->run($article);
 

@@ -6,5 +6,12 @@ namespace App\Containers\AccountingSection\AccountContainer\Values;
 
 class CreateOwnerValue
 {
-    public string $id;
+    public function __construct(private string $id)
+    {
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

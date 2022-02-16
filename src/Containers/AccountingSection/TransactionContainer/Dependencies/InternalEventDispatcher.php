@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\TransactionContainer\Dependencies;
 
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
+use App\Containers\AccountingSection\TransactionContainer\Dependencies\Messages\TransactionCreatedMessage;
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Transformers\TransactionToPublicModelTransformer;
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Ship\Parents\Dependencies\AbstractInternalEventDispatcher;
@@ -19,10 +20,14 @@ class InternalEventDispatcher extends AbstractInternalEventDispatcher implements
         parent::__construct($this->bus);
     }
 
-    public function dispatchTransactionCreated(TransactionInterface $transaction): void
-    {
+    public function dispatchTransactionCreated(
+        TransactionInterface $transaction,
+        int $sourceSum,
+        int $destinationSum
+    ): void {
         $transactionPublic = $this->transformer->toPublicModel($transaction);
+        $message = new TransactionCreatedMessage($transactionPublic, $sourceSum, $destinationSum);
 
-        $this->bus->dispatch($transactionPublic);
+        $this->bus->dispatch($message);
     }
 }
