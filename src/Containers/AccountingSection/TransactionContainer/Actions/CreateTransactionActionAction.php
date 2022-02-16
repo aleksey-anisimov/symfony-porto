@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\TransactionContainer\Actions;
 
-use App\Containers\AccountingSection\TransactionContainer\Actions\Interfaces\CreateTransactionInterface;
+use App\Containers\AccountingSection\TransactionContainer\Actions\Interfaces\CreateTransactionActionInterface;
 use App\Containers\AccountingSection\TransactionContainer\Exceptions\AccountNotFoundException;
 use App\Containers\AccountingSection\TransactionContainer\Exceptions\TransactionIsNotAllowedException;
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
@@ -17,7 +17,7 @@ use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\Valid
 use App\Containers\AccountingSection\TransactionContainer\Values\TransactionValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class CreateTransaction extends AbstractAction implements CreateTransactionInterface
+class CreateTransactionActionAction extends AbstractAction implements CreateTransactionActionInterface
 {
     public function __construct(
         private GetAccountTaskInterface $getAccountTask,

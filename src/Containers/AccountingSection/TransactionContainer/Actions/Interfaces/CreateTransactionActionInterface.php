@@ -7,7 +7,7 @@ namespace App\Containers\AccountingSection\TransactionContainer\Actions\Interfac
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Containers\AccountingSection\TransactionContainer\Values\TransactionValue;
 
-interface CreateTransactionInterface
+interface CreateTransactionActionInterface
 {
     public function run(TransactionValue $transactionValue): TransactionInterface;
 }
