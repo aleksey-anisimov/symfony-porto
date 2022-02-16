@@ -26,4 +26,10 @@ class ArticleRepository extends AbstractRepository implements ArticleRepositoryI
     {
         return $this->findAll();
     }
+
+    public function save(ArticleInterface $article):void
+    {
+        $this->getEntityManager()->persist($article);
+        $this->getEntityManager()->flush($article);
+    }
 }

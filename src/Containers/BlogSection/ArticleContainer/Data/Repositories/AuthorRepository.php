@@ -21,4 +21,10 @@ class AuthorRepository extends AbstractRepository implements AuthorRepositoryInt
     {
         return $this->find($id);
     }
+
+    public function save(AuthorInterface $author): void
+    {
+        $this->getEntityManager()->persist($author);
+        $this->getEntityManager()->flush($author);
+    }
 }

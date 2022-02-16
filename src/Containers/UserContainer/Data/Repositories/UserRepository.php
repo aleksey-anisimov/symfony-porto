@@ -26,4 +26,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->findOneBy(['email' => $email]);
     }
+
+    public function save(UserInterface $user): void
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush($user);
+    }
 }

@@ -9,4 +9,6 @@ use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterfa
 interface ArticleRepositoryInterface
 {
     public function findById(string $id): ?ArticleInterface;
+
+    public function save(ArticleInterface $article): void;
 }
