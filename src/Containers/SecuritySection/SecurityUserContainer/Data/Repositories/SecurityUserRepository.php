@@ -26,4 +26,10 @@ class SecurityUserRepository extends AbstractRepository implements SecurityUserR
     {
         return $this->findOneBy(['email' => $email]);
     }
+
+    public function save(SecurityUserInterface $securityUser): void
+    {
+        $this->getEntityManager()->persist($securityUser);
+        $this->getEntityManager()->flush($securityUser);
+    }
 }

@@ -8,9 +8,7 @@ use App\Ship\Parents\Values\AbstractValue;
 
 class TokenValue extends AbstractValue
 {
-    private string $token;
-
-    public function __construct(string $token)
+    public function __construct(private string $token)
     {
         $this->token = $token;
     }

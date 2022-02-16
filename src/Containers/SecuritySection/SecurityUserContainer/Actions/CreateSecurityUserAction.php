@@ -13,7 +13,7 @@ use App\Containers\SecuritySection\SecurityUserContainer\Values\IdentityValue;
 use App\Containers\SecuritySection\SecurityUserContainer\Values\SecurityUserValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class CreateSecurityUserActionAction extends AbstractAction implements CreateSecurityUserActionInterface
+class CreateSecurityUserAction extends AbstractAction implements CreateSecurityUserActionInterface
 {
     public function __construct(
         private CheckSecurityUserExistenceTask $checkSecurityUserExistenceTask,

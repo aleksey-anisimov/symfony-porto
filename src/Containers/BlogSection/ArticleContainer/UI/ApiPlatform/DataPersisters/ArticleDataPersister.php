@@ -6,16 +6,13 @@ namespace App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\DataPersist
 
 use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetAuthorByIdActionInterface;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\ArticleResource;
-use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
+use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
 
 class ArticleDataPersister implements ContextAwareDataPersisterInterface
 {
-    public function __construct(
-        private CreateArticleActionInterface $createArticleAction,
-        private GetAuthorByIdActionInterface $getAuthorByIdAction
-    ) {
+    public function __construct(private CreateArticleActionInterface $createArticleAction)
+    {
     }
 
     /**
@@ -23,10 +20,7 @@ class ArticleDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = []): ArticleResource
     {
-        $articleValue = new ArticleValue();
-        $articleValue->title = $data->title;
-        $articleValue->text = $data->text;
-        $articleValue->author = $this->getAuthorByIdAction->run($data->authorId);
+        $articleValue = new CreateArticleValue($data->title, $data->text, $data->authorId);
 
         $article = $this->createArticleAction->run($articleValue);
 

@@ -11,4 +11,6 @@ interface ArticleRepositoryInterface
     public function findById(string $id): ?ArticleInterface;
 
     public function findList(): array;
+
+    public function save(ArticleInterface $article): void;
 }

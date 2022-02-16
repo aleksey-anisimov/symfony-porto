@@ -9,4 +9,6 @@ use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterfac
 interface AuthorRepositoryInterface
 {
     public function findById(string $id): ?AuthorInterface;
+
+    public function save(AuthorInterface $author): void;
 }

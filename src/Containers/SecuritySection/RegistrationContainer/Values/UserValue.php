@@ -8,13 +8,38 @@ use App\Ship\Parents\Values\AbstractValue;
 
 class UserValue extends AbstractValue
 {
-    public ?string $id = null;
+    public function __construct(
+        private ?string $id,
+        private string $email,
+        private string $password,
+        private string $firstname,
+        private array $roles
+    ) {
+    }
 
-    public string $email;
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
 
-    public string $password;
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
 
-    public string $firstname;
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
 
-    public array $roles = [];
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
 }

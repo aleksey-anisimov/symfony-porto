@@ -11,4 +11,6 @@ interface SecurityUserRepositoryInterface
     public function findById(string $id): ?SecurityUserInterface;
 
     public function findByEmail(string $email): ?SecurityUserInterface;
+
+    public function save(SecurityUserInterface $securityUser): void;
 }

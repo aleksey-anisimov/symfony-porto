@@ -30,13 +30,13 @@ class CreateTransaction extends AbstractAction implements CreateTransactionInter
 
     public function run(TransactionValue $transactionValue): TransactionInterface
     {
-        $source = $this->getAccountTask->run($transactionValue->sourceId);
+        $source = $this->getAccountTask->run($transactionValue->getSourceId());
 
         if (!$source) {
             throw new AccountNotFoundException();
         }
 
-        $destination = $this->getAccountTask->run($transactionValue->destinationId);
+        $destination = $this->getAccountTask->run($transactionValue->getDestinationId());
 
         if (!$destination) {
             throw new AccountNotFoundException();
@@ -50,8 +50,8 @@ class CreateTransaction extends AbstractAction implements CreateTransactionInter
         $transaction = new Transaction();
         $transaction->setSource($source);
         $transaction->setDestination($destination);
-        $transaction->setComment($transactionValue->comment);
-        $transaction->setValue($transactionValue->value);
+        $transaction->setComment($transactionValue->getComment());
+        $transaction->setValue($transactionValue->getValue());
 
         $this->saveTransactionTask->run($transaction);
         $this->sendTransactionCreatedEventTask->run($transaction);

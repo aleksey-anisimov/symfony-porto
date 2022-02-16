@@ -4,15 +4,26 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\CommentContainer\Values;
 
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface;
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Ship\Parents\Values\AbstractValue;
 
 class CommentValue extends AbstractValue
 {
-    public ?string $text = null;
+    public function __construct(private string $text, private string $authorId, private string $articleId)
+    {
+    }
 
-    public ?AuthorInterface $author = null;
+    public function getText(): string
+    {
+        return $this->text;
+    }
 
-    public ?ArticleInterface $article = null;
+    public function getAuthorId(): string
+    {
+        return $this->authorId;
+    }
+
+    public function getArticleId(): string
+    {
+        return $this->articleId;
+    }
 }

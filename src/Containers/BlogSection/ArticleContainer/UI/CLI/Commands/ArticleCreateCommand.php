@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\CLI\Commands;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetAuthorByIdActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Values\ArticleValue;
+use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,8 +21,7 @@ class ArticleCreateCommand extends Command
     public const NAME = 'app:article:create';
 
     public function __construct(
-        private CreateArticleActionInterface $createArticleAction,
-        private GetAuthorByIdActionInterface $getAuthorByIdAction
+        private CreateArticleActionInterface $createArticleAction
     ) {
         parent::__construct(self::NAME);
     }
@@ -38,11 +36,11 @@ class ArticleCreateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $articleValue = new ArticleValue();
-        $articleValue->title = $input->getOption('title');
-        $articleValue->text = $input->getOption('text');
-
-        $articleValue->author = $this->getAuthorByIdAction->run($input->getOption('authorId'));
+        $articleValue = new CreateArticleValue(
+            $input->getOption('title'),
+            $input->getOption('text'),
+            $input->getOption('authorId')
+        );
 
         $this->createArticleAction->run($articleValue);
 

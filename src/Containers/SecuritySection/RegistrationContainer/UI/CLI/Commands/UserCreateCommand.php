@@ -6,6 +6,7 @@ namespace App\Containers\SecuritySection\RegistrationContainer\UI\CLI\Commands;
 
 use App\Containers\SecuritySection\RegistrationContainer\Actions\Interfaces\RegisterUserActionInterface;
 use App\Containers\SecuritySection\RegistrationContainer\Values\UserValue;
+use App\Ship\Core\Generators\UuidGenerator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,11 +37,13 @@ class UserCreateCommand extends Command // TODO: remove it. It be created for de
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $userValue = new UserValue();
-        $userValue->email = $input->getOption('email');
-        $userValue->password = $input->getOption('password');
-        $userValue->firstname = $input->getOption('firstname');
-        $userValue->roles = ['ROLE_USER'];
+        $userValue = new UserValue(
+            UuidGenerator::uuidString(null),
+            $input->getOption('email'),
+            $input->getOption('password'),
+            $input->getOption('firstname'),
+            ['ROLE_USER'],
+        );
 
         $this->registerUserAction->run($userValue);
 

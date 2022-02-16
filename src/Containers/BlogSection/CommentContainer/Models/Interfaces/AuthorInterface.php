@@ -8,5 +8,5 @@ interface AuthorInterface
 {
     public function getId(): string;
 
-    public function getFirstname(): string;
+    public function getFirstname(): ?string;
 }

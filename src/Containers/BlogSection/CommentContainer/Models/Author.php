@@ -18,7 +18,7 @@ class Author extends AbstractModel implements AuthorInterface
     private string $id;
 
     #[ORM\Column(type: 'string', nullable: true)]
-    private string $firstname;
+    private ?string $firstname;
 
     public function __construct(?string $id)
     {
@@ -30,12 +30,12 @@ class Author extends AbstractModel implements AuthorInterface
         return $this->id;
     }
 
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): AuthorInterface
+    public function setFirstname(?string $firstname): AuthorInterface
     {
         $this->firstname = $firstname;
 

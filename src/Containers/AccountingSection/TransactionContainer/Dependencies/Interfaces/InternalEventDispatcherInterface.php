@@ -8,5 +8,9 @@ use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\Tran
 
 interface InternalEventDispatcherInterface
 {
-    public function dispatchTransactionCreated(TransactionInterface $transaction): void;
+    public function dispatchTransactionCreated(
+        TransactionInterface $transaction,
+        int $sourceSum,
+        int $destinationSum
+    ): void;
 }

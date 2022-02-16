@@ -22,13 +22,13 @@ class EditAccountAction extends AbstractAction implements EditAccountActionInter
 
     public function run(EditAccountValue $editAccountValue): AccountInterface
     {
-        $account = $this->getAccountTask->run($editAccountValue->accountId);
+        $account = $this->getAccountTask->run($editAccountValue->getAccountId());
 
         if (!$account) {
             throw new AccountNotFoundException();
         }
 
-        $account->setName($editAccountValue->name);
+        $account->setName($editAccountValue->getName());
         $this->saveAccountTask->run($account);
 
         return $account;
