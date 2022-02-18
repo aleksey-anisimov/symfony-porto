@@ -12,7 +12,7 @@ use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\SaveOwner
 use App\Containers\AccountingSection\AccountContainer\Values\CreateOwnerValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class CreateOrUpdateOrUpdateOwnerAction extends AbstractAction implements CreateOrUpdateOwnerActionInterface
+class CreateOrUpdateOwnerAction extends AbstractAction implements CreateOrUpdateOwnerActionInterface
 {
     public function __construct(
         private GetOwnerTaskInterface $getOwnerTask,

@@ -6,7 +6,7 @@ use App\Containers\AccountingSection\AccountContainer\Actions\Interfaces\UpdateA
 use App\Containers\AccountingSection\AccountContainer\Values\UpdateAccountBalanceValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class UpdateAccountBalanceActionAction extends AbstractAction implements UpdateAccountBalanceActionInterface
+class UpdateAccountBalanceAction extends AbstractAction implements UpdateAccountBalanceActionInterface
 {
     public function run(UpdateAccountBalanceValue $updateAccountBalanceValue): void
     {

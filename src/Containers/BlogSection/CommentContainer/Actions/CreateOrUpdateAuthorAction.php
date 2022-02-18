@@ -12,7 +12,7 @@ use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\SaveAuthorTaskI
 use App\Containers\BlogSection\CommentContainer\Values\AuthorValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class CreateOrUpdateOrUpdateAuthorAction extends AbstractAction implements CreateOrUpdateAuthorActionInterface
+class CreateOrUpdateAuthorAction extends AbstractAction implements CreateOrUpdateAuthorActionInterface
 {
     public function __construct(
         private GetAuthorByIdTaskInterface $getAuthorByIdAction,
