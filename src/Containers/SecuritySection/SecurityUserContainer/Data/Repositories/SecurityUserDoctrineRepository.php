@@ -7,10 +7,10 @@ namespace App\Containers\SecuritySection\SecurityUserContainer\Data\Repositories
 use App\Containers\SecuritySection\SecurityUserContainer\Data\Repositories\Interfaces\SecurityUserRepositoryInterface;
 use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
 use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class SecurityUserRepository extends AbstractRepository implements SecurityUserRepositoryInterface
+class SecurityUserDoctrineRepository extends AbstractDoctrineRepository implements SecurityUserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

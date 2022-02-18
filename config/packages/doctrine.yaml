@@ -25,13 +25,13 @@ doctrine:
             blog_section_article_container:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Containers/BlogSection/ArticleContainer/Models'
+                dir: '%kernel.project_dir%/src/Containers/BlogSection/ArticleContainer/Data/Entities'
                 prefix: App\Containers\BlogSection\ArticleContainer\Models
                 alias: blog_section_article_container
             blog_section_comment_container:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Containers/BlogSection/CommentContainer/Models'
+                dir: '%kernel.project_dir%/src/Containers/BlogSection/CommentContainer/Data/Entities'
                 prefix: App\Containers\BlogSection\CommentContainer\Models
                 alias: blog_section_comment_container
             security_section_security_user_container:

@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Data\Repositories;
 
+use App\Containers\BlogSection\ArticleContainer\Data\Entities\Author as AuthorEntity;
 use App\Containers\BlogSection\ArticleContainer\Data\Repositories\Interfaces\AuthorRepositoryInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class AuthorRepository extends AbstractRepository implements AuthorRepositoryInterface
+class AuthorDoctrineRepository extends AbstractDoctrineRepository implements AuthorRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -19,12 +20,16 @@ class AuthorRepository extends AbstractRepository implements AuthorRepositoryInt
 
     public function findById(string $id): ?AuthorInterface
     {
-        return $this->find($id);
+        $entity = $this->find($id);
+
+        return $entity ? new Author($entity->getId(), $entity->getFirstname()) : null;
     }
 
     public function save(AuthorInterface $author): void
     {
-        $this->getEntityManager()->persist($author);
-        $this->getEntityManager()->flush($author);
+        $entity = AuthorEntity::createFromModel($author);
+
+        $this->getEntityManager()->persist($entity);
+        $this->getEntityManager()->flush($entity);
     }
 }

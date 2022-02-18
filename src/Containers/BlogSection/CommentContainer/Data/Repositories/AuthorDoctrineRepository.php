@@ -7,10 +7,10 @@ namespace App\Containers\BlogSection\CommentContainer\Data\Repositories;
 use App\Containers\BlogSection\CommentContainer\Data\Repositories\Interfaces\AuthorRepositoryInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Author;
 use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class AuthorRepository extends AbstractRepository implements AuthorRepositoryInterface
+class AuthorDoctrineRepository extends AbstractDoctrineRepository implements AuthorRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

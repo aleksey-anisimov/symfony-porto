@@ -7,10 +7,10 @@ namespace App\Containers\AccountingSection\AccountContainer\Data\Repositories;
 use App\Containers\AccountingSection\AccountContainer\Data\Repositories\Interfaces\OwnerRepositoryInterface;
 use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
 use App\Containers\AccountingSection\AccountContainer\Models\Owner;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class OwnerRepository extends AbstractRepository implements OwnerRepositoryInterface
+class OwnerDoctrineRepository extends AbstractDoctrineRepository implements OwnerRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

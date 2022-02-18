@@ -7,10 +7,10 @@ namespace App\Containers\UserContainer\Data\Repositories;
 use App\Containers\UserContainer\Data\Repositories\Interfaces\UserRepositoryInterface;
 use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class UserRepository extends AbstractRepository implements UserRepositoryInterface
+class UserDoctrineRepository extends AbstractDoctrineRepository implements UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
