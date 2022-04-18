@@ -8,6 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Containers\BlogSection\ArticleContainer\Models\Article as ArticleModel;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests\CreateArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\ArticleResponse;
+use App\Ship\Parents\Resources\AbstractResource;
 
 #[ApiResource(
     shortName: 'article',
@@ -15,7 +16,7 @@ use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\Article
     output: ArticleResponse::class,
     routePrefix: '/api-platform/blog'
 )]
-class ArticleResource
+class ArticleResource extends AbstractResource
 {
     public ?string $id = null;
 
@@ -23,16 +24,5 @@ class ArticleResource
 
     public ?string $text = null;
 
-    public ?string $authorId = null;
-
-    public static function fromModel(ArticleModel $articleModel): self
-    {
-        $article = new self();
-        $article->id = $articleModel->getId();
-        $article->title = $articleModel->getTitle();
-        $article->text = $articleModel->getText();
-        $article->authorId = $articleModel->getAuthor()?->getId();
-
-        return $article;
-    }
+    public ?AuthorResource $author = null;
 }

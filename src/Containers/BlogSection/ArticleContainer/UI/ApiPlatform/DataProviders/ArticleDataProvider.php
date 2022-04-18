@@ -11,13 +11,15 @@ use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticleAct
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticlesActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\ArticleResource;
+use App\Ship\Core\DataTransformers\DataTransformer;
 
 class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareCollectionDataProviderInterface,
                                      RestrictedDataProviderInterface
 {
     public function __construct(
         private GetArticleActionInterface $getArticleAction,
-        private GetArticlesActionInterface $getArticlesAction
+        private GetArticlesActionInterface $getArticlesAction,
+        private DataTransformer $dataTransformer
     ) {
     }
 
@@ -29,16 +31,16 @@ class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareColl
     ): ?ArticleResource {
         $article = $this->getArticleAction->run($id);
 
-        return $article ? ArticleResource::fromModel($article) : null;
+        return $article ? $this->dataTransformer->modelToResource($article, ArticleResource::class) : null;
     }
 
     public function getCollection(string $resourceClass, string $operationName = null, array $context = []): iterable
     {
         $articles = $this->getArticlesAction->run();
 
-        return array_map( // TODO: use data transformer
-            static function (ArticleInterface $article) {
-                return ArticleResource::fromModel($article);
+        return array_map(
+            function (ArticleInterface $article) {
+                return $this->dataTransformer->modelToResource($article, ArticleResource::class);
             },
             $articles
         );

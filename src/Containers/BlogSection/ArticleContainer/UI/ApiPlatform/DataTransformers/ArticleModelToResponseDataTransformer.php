@@ -19,7 +19,7 @@ class ArticleModelToResponseDataTransformer implements DataTransformerInterface
         $response->id = $object->id;
         $response->title = $object->title;
         $response->text = $object->text;
-        $response->authorId = $object->authorId;
+        $response->authorId = $object->author->id;
 
         return $response;
     }
