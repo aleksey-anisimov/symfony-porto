@@ -6,12 +6,12 @@ namespace App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Containers\BlogSection\ArticleContainer\Models\Article as ArticleModel;
-use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests\ArticleRequest;
+use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests\CreateArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\ArticleResponse;
 
 #[ApiResource(
     shortName: 'article',
-    input: ArticleRequest::class,
+    input: CreateArticleRequest::class,
     output: ArticleResponse::class,
     routePrefix: '/api-platform/blog'
 )]

@@ -16,13 +16,11 @@ class ArticleDataPersister implements ContextAwareDataPersisterInterface
     }
 
     /**
-     * @param ArticleResource $data
+     * @param CreateArticleValue $data
      */
     public function persist($data, array $context = []): ArticleResource
     {
-        $articleValue = new CreateArticleValue($data->title, $data->text, $data->authorId);
-
-        $article = $this->createArticleAction->run($articleValue);
+        $article = $this->createArticleAction->run($data);
 
         return ArticleResource::fromModel($article);
     }
@@ -33,6 +31,6 @@ class ArticleDataPersister implements ContextAwareDataPersisterInterface
 
     public function supports($data, array $context = []): bool
     {
-        return $data instanceof ArticleResource;
+        return $data instanceof CreateArticleValue;
     }
 }

@@ -16,14 +16,6 @@ class CreateArticleRequest extends AbstractRequest
     #[Assert\NotBlank]
     public ?string $text = null;
 
-    public static function createFromRequest(Request $request): self
-    {
-        $content = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        $articleCreateRequest = new self();
-        $articleCreateRequest->title = $content['title'] ?? null;
-        $articleCreateRequest->text = $content['text'] ?? null;
-
-        return $articleCreateRequest;
-    }
+    #[Assert\NotBlank]
+    public ?string $authorId = null;
 }
