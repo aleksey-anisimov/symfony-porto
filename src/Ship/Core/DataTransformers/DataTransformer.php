@@ -16,24 +16,24 @@ class DataTransformer
     {
     }
 
-    public function modelToResource(AbstractModel $model, string $resourceClass): AbstractResource
+    public function modelToResource(AbstractModel $model, string $resourceClass, array $context = []): AbstractResource
     {
-        $data = $this->normalizer->normalize($model);
+        $data = $this->normalizer->normalize($model, null, $context);
 
-        return $this->denormalizer->denormalize($data, $resourceClass);
+        return $this->denormalizer->denormalize($data, $resourceClass, null, $context);
     }
 
-    public function modelToEntity(AbstractModel $model, string $entityClass): AbstractEntity
+    public function modelToEntity(AbstractModel $model, string $entityClass, array $context = []): AbstractEntity
     {
-        $data = $this->normalizer->normalize($model);
+        $data = $this->normalizer->normalize($model, null, $context);
 
-        return $this->denormalizer->denormalize($data, $entityClass);
+        return $this->denormalizer->denormalize($data, $entityClass, null, $context);
     }
 
-    public function entityToModel(AbstractEntity $entity, string $modelClass): AbstractModel
+    public function entityToModel(AbstractEntity $entity, string $modelClass, array $context = []): AbstractModel
     {
-        $data = $this->normalizer->normalize($entity);
+        $data = $this->normalizer->normalize($entity, null, $context);
 
-        return $this->denormalizer->denormalize($data, $modelClass);
+        return $this->denormalizer->denormalize($data, $modelClass, null, $context);
     }
 }

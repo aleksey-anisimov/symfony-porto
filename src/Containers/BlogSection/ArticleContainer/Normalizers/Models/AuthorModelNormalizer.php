@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\Normalizers\Models;
 
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use App\Ship\Parents\Normalizers\AbstractNormalizer;
 
-class AuthorModelNormalizer implements NormalizerInterface
+class AuthorModelNormalizer extends AbstractNormalizer
 {
     /**
      * @param Author $object
@@ -20,7 +20,7 @@ class AuthorModelNormalizer implements NormalizerInterface
         ];
     }
 
-    public function supportsNormalization(mixed $data, string $format = null): bool
+    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
     {
         return $data instanceof Author;
     }

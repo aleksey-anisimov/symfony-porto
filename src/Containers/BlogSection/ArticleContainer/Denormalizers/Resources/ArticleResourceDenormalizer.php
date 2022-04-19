@@ -6,9 +6,9 @@ namespace App\Containers\BlogSection\ArticleContainer\Denormalizers\Resources;
 
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\ArticleResource;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\AuthorResource;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use App\Ship\Parents\Denormalizers\AbstractDenormalizer;
 
-class ArticleResourceDenormalizer implements DenormalizerInterface
+class ArticleResourceDenormalizer extends AbstractDenormalizer
 {
     public function __construct(private AuthorResourceDenormalizer $authorResourceDenormalizer)
     {
@@ -30,7 +30,7 @@ class ArticleResourceDenormalizer implements DenormalizerInterface
         return $articleResource;
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === ArticleResource::class;
     }

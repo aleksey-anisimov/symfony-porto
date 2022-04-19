@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Containers\BlogSection\ArticleContainer\Models\Article as ArticleModel;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests\CreateArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Responses\ArticleResponse;
 use App\Ship\Parents\Resources\AbstractResource;

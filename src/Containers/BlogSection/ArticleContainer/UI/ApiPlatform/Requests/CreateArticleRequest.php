@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Requests;
 
 use App\Ship\Parents\Requests\AbstractRequest;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CreateArticleRequest extends AbstractRequest

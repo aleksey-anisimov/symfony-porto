@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\Denormalizers\Entities;
 
 use App\Containers\BlogSection\ArticleContainer\Data\Entities\Author;
+use App\Ship\Parents\Denormalizers\AbstractDenormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-class AuthorEntityDenormalizer implements DenormalizerInterface
+class AuthorEntityDenormalizer extends AbstractDenormalizer
 {
     public function __construct(private EntityManagerInterface $entityManager)
     {
@@ -27,7 +27,7 @@ class AuthorEntityDenormalizer implements DenormalizerInterface
         return $authorEntity;
     }
 
-    public function supportsDenormalization(mixed $data, string $type, string $format = null): bool
+    public function supportsDenormalization(mixed $data, string $type, string $format = null, array $context = []): bool
     {
         return $type === Author::class;
     }
