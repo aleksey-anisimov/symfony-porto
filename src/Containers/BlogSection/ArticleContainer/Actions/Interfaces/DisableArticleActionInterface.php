@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Actions\Interfaces;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 
 interface DisableArticleActionInterface
 {
-    public function run(ArticleInterface $article): void;
+    public function run(Article $article): void;
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Author;
 
 interface InternalClientInterface
 {
-    public function getAuthorById(string $id): AuthorInterface;
+    public function getAuthorById(string $id): Author;
 }

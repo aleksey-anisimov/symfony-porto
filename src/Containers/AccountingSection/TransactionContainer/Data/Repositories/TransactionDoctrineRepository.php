@@ -7,10 +7,10 @@ namespace App\Containers\AccountingSection\TransactionContainer\Data\Repositorie
 use App\Containers\AccountingSection\TransactionContainer\Data\Repositories\Interfaces\TransactionRepositoryInterface;
 use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Containers\AccountingSection\TransactionContainer\Models\Transaction;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class TransactionRepository extends AbstractRepository implements TransactionRepositoryInterface
+class TransactionDoctrineRepository extends AbstractDoctrineRepository implements TransactionRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -9,7 +9,7 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticleActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticlesActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\ArticleResource;
 use App\Ship\Core\DataTransformers\DataTransformer;
 
@@ -39,7 +39,7 @@ class ArticleDataProvider implements ItemDataProviderInterface, ContextAwareColl
         $articles = $this->getArticlesAction->run();
 
         return array_map(
-            function (ArticleInterface $article) {
+            function (Article $article) {
                 return $this->dataTransformer->modelToResource($article, ArticleResource::class);
             },
             $articles

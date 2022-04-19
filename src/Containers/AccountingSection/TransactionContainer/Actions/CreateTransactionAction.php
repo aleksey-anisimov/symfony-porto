@@ -17,7 +17,7 @@ use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\Valid
 use App\Containers\AccountingSection\TransactionContainer\Values\TransactionValue;
 use App\Ship\Parents\Actions\AbstractAction;
 
-class CreateTransactionActionAction extends AbstractAction implements CreateTransactionActionInterface
+class CreateTransactionAction extends AbstractAction implements CreateTransactionActionInterface
 {
     public function __construct(
         private GetAccountTaskInterface $getAccountTask,

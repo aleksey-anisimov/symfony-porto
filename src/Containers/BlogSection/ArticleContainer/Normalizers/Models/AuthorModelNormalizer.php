@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\BlogSection\ArticleContainer\Normalizers;
+namespace App\Containers\BlogSection\ArticleContainer\Normalizers\Models;
 
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

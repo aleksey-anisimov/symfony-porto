@@ -6,7 +6,6 @@ namespace App\Containers\BlogSection\ArticleContainer\Dependencies;
 
 use App\Containers\BlogSection\ArticleContainer\Dependencies\Interfaces\InternalClientInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Author;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\UserContainer\Dependencies\Interfaces\InternalApiInterface as UserContainerApi;
 use App\Ship\Parents\Dependencies\AbstractInternalClient;
 
@@ -19,7 +18,7 @@ class InternalClient extends AbstractInternalClient implements InternalClientInt
         $this->userServer = $userServer;
     }
 
-    public function getAuthorById(string $id): AuthorInterface
+    public function getAuthorById(string $id): Author
     {
         $user = $this->userServer->getUserById($id);
 

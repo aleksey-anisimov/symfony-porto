@@ -7,10 +7,10 @@ namespace App\Containers\AccountingSection\AccountContainer\Data\Repositories;
 use App\Containers\AccountingSection\AccountContainer\Data\Repositories\Interfaces\AccountRepositoryInterface;
 use App\Containers\AccountingSection\AccountContainer\Models\AbstractAccount;
 use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountInterface;
-use App\Ship\Parents\Repositories\AbstractRepository;
+use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class AccountRepository extends AbstractRepository implements AccountRepositoryInterface
+class AccountDoctrineRepository extends AbstractDoctrineRepository implements AccountRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -4,36 +4,18 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Models;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
-use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
-use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-#[ORM\Table(name: 'blog_section_article_container_article')]
-class Article extends AbstractModel implements ArticleInterface
+class Article extends AbstractModel
 {
-    #[ORM\Id]
-    #[ORM\Column(type: 'string', unique: true)]
-    private string $id;
-
-    #[ORM\Column(type: 'string')]
-    private ?string $title = null;
-
-    #[ORM\Column(type: 'text')]
-    private ?string $text = null;
-
-    #[ORM\ManyToOne(targetEntity: AuthorInterface::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private AuthorInterface $author;
-
-    #[ORM\Column(type: 'boolean')]
     private bool $disabled = false;
 
-    public function __construct(?string $id = null)
-    {
-        $this->id = UuidGenerator::uuidString($id);
+    public function __construct(
+        private string $id,
+        private ?string $title,
+        private ?string $text,
+        private Author $author
+    ) {
     }
 
     public function getId(): string
@@ -46,7 +28,7 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->title;
     }
 
-    public function setTitle(string $title): ArticleInterface
+    public function changeTitle(string $title): self
     {
         $this->title = $title;
 
@@ -58,21 +40,14 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->text;
     }
 
-    public function setText(string $text): ArticleInterface
+    public function changeText(string $text): self
     {
         $this->text = $text;
 
         return $this;
     }
 
-    public function setAuthor(AuthorInterface $author): ArticleInterface
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    public function getAuthor(): AuthorInterface
+    public function getAuthor(): Author
     {
         return $this->author;
     }
@@ -82,9 +57,16 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->disabled;
     }
 
-    public function setDisabled(bool $disabled): ArticleInterface
+    public function disable(): self
     {
-        $this->disabled = $disabled;
+        $this->disabled = true;
+
+        return $this;
+    }
+
+    public function enable(): self
+    {
+        $this->disabled = false;
 
         return $this;
     }

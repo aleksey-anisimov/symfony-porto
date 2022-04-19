@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\Tasks;
 
 use App\Containers\BlogSection\ArticleContainer\Data\Repositories\Interfaces\ArticleRepositoryInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
-use Doctrine\ORM\EntityManagerInterface;
 
 class SaveArticleTask extends AbstractTask implements SaveArticleTaskInterface
 {
@@ -16,7 +15,7 @@ class SaveArticleTask extends AbstractTask implements SaveArticleTaskInterface
     {
     }
 
-    public function run(ArticleInterface $article): void
+    public function run(Article $article): void
     {
         $this->repository->save($article);
     }
