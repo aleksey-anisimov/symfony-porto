@@ -10,6 +10,5 @@ class UpdateAccountBalanceAction extends AbstractAction implements UpdateAccount
 {
     public function run(UpdateAccountBalanceValue $updateAccountBalanceValue): void
     {
-
     }
 }

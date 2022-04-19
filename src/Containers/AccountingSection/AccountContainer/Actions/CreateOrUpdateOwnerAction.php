@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\AccountContainer\Actions;
 
 use App\Containers\AccountingSection\AccountContainer\Actions\Interfaces\CreateOrUpdateOwnerActionInterface;
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
 use App\Containers\AccountingSection\AccountContainer\Models\Owner;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\GetOwnerTaskInterface;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\SaveOwnerTaskInterface;
@@ -20,7 +19,7 @@ class CreateOrUpdateOwnerAction extends AbstractAction implements CreateOrUpdate
     ) {
     }
 
-    public function run(CreateOwnerValue $ownerValue): OwnerInterface
+    public function run(CreateOwnerValue $ownerValue): Owner
     {
         $owner = $this->getOwnerTask->run($ownerValue->getId()) ?: new Owner($ownerValue->getId());
 

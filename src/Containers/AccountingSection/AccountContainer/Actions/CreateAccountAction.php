@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\AccountContainer\Actions;
 
 use App\Containers\AccountingSection\AccountContainer\Actions\Interfaces\CreateAccountActionInterface;
+use App\Containers\AccountingSection\AccountContainer\Models\AbstractAccount;
 use App\Containers\AccountingSection\AccountContainer\Models\Consumption;
 use App\Containers\AccountingSection\AccountContainer\Models\Income;
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountInterface;
 use App\Containers\AccountingSection\AccountContainer\Models\Wallet;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\GetOwnerTaskInterface;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\SaveAccountTaskInterface;
@@ -23,7 +23,7 @@ class CreateAccountAction extends AbstractAction implements CreateAccountActionI
     ) {
     }
 
-    public function run(AccountValue $accountValue): AccountInterface
+    public function run(AccountValue $accountValue): AbstractAccount
     {
         $account = $this->createAccountByType($accountValue->getType());
         $account->setName($accountValue->getName());
@@ -35,7 +35,7 @@ class CreateAccountAction extends AbstractAction implements CreateAccountActionI
     }
 
     // TODO: refactor it
-    private function createAccountByType(AccountTypeEnum $type): AccountInterface
+    private function createAccountByType(AccountTypeEnum $type): AbstractAccount
     {
         if ($type === AccountTypeEnum::INCOME) {
             $account = new Income();

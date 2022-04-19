@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\AccountContainer\Models;
 
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountInterface;
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
 use App\Containers\AccountingSection\AccountContainer\Values\AccountTypeEnum;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'accounting_section_account_container_account')]
-abstract class AbstractAccount extends AbstractModel implements AccountInterface
+abstract class AbstractAccount extends AbstractModel
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', unique: true)]
@@ -24,9 +22,9 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
     #[ORM\Column(type: 'boolean')]
     protected bool $deleted = false;
 
-    #[ORM\ManyToOne(targetEntity: OwnerInterface::class)]
+    #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
-    protected OwnerInterface $owner;
+    protected Owner $owner;
 
     #[ORM\Column(type: 'string')]
     protected AccountTypeEnum $type;
@@ -44,7 +42,7 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
         return $this->name;
     }
 
-    public function setName(string $name): AccountInterface
+    public function setName(string $name): AbstractAccount
     {
         $this->name = $name;
 
@@ -56,19 +54,19 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
         return $this->deleted;
     }
 
-    public function setDeleted(bool $deleted): AccountInterface
+    public function setDeleted(bool $deleted): AbstractAccount
     {
         $this->deleted = $deleted;
 
         return $this;
     }
 
-    public function getOwner(): OwnerInterface
+    public function getOwner(): Owner
     {
         return $this->owner;
     }
 
-    public function setOwner(OwnerInterface $owner): AccountInterface
+    public function setOwner(Owner $owner): AbstractAccount
     {
         $this->owner = $owner;
 
@@ -85,7 +83,7 @@ abstract class AbstractAccount extends AbstractModel implements AccountInterface
         return $this->balance;
     }
 
-    public function setBalance(int $balance): AccountInterface
+    public function setBalance(int $balance): AbstractAccount
     {
         $this->balance = $balance;
 

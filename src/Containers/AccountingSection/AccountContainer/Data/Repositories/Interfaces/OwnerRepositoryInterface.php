@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\AccountContainer\Data\Repositories\Interfaces;
 
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
+use App\Containers\AccountingSection\AccountContainer\Models\Owner;
 
 interface OwnerRepositoryInterface
 {
-    public function findById(string $id): ?OwnerInterface;
+    public function findById(string $id): ?Owner;
 
-    public function save(OwnerInterface $owner): void;
+    public function save(Owner $owner): void;
 }

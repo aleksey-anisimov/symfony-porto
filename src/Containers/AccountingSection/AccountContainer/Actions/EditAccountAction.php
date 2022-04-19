@@ -6,7 +6,7 @@ namespace App\Containers\AccountingSection\AccountContainer\Actions;
 
 use App\Containers\AccountingSection\AccountContainer\Actions\Interfaces\EditAccountActionInterface;
 use App\Containers\AccountingSection\AccountContainer\Exceptions\AccountNotFoundException;
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountInterface;
+use App\Containers\AccountingSection\AccountContainer\Models\AbstractAccount;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\GetAccountTaskInterface;
 use App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces\SaveAccountTaskInterface;
 use App\Containers\AccountingSection\AccountContainer\Values\EditAccountValue;
@@ -20,7 +20,7 @@ class EditAccountAction extends AbstractAction implements EditAccountActionInter
     ) {
     }
 
-    public function run(EditAccountValue $editAccountValue): AccountInterface
+    public function run(EditAccountValue $editAccountValue): AbstractAccount
     {
         $account = $this->getAccountTask->run($editAccountValue->getAccountId());
 

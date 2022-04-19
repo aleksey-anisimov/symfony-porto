@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\AccountContainer\Tasks\Interfaces;
 
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface;
+use App\Containers\AccountingSection\AccountContainer\Models\Owner;
 
 interface SaveOwnerTaskInterface
 {
-    public function run(OwnerInterface $owner): void;
+    public function run(Owner $owner): void;
 }

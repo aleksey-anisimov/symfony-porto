@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\AccountContainer\Data\Repositories\Interfaces;
 
-use App\Containers\AccountingSection\AccountContainer\Models\Interfaces\AccountInterface;
+use App\Containers\AccountingSection\AccountContainer\Models\AbstractAccount;
 
 interface AccountRepositoryInterface
 {
-    public function findById(string $id): ?AccountInterface;
+    public function findById(string $id): ?AbstractAccount;
 
-    public function save(AccountInterface $account): void;
+    public function save(AbstractAccount $account): void;
 }
