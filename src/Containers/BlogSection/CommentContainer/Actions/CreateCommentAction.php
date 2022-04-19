@@ -6,7 +6,6 @@ namespace App\Containers\BlogSection\CommentContainer\Actions;
 
 use App\Containers\BlogSection\CommentContainer\Actions\Interfaces\CreateCommentActionInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Comment;
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\GetArticleByIdTaskInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\SaveCommentTaskInterface;
@@ -22,7 +21,7 @@ class CreateCommentAction extends AbstractAction implements CreateCommentActionI
     ) {
     }
 
-    public function run(CommentValue $commentValue): CommentInterface
+    public function run(CommentValue $commentValue): Comment
     {
         $comment = new Comment(
             null,

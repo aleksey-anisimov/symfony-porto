@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\CommentContainer\UI\API\Controllers;
 
 use App\Containers\BlogSection\CommentContainer\Actions\Interfaces\CreateCommentActionInterface;
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\CommentInterface;
+use App\Containers\BlogSection\CommentContainer\Models\Comment;
 use App\Containers\BlogSection\CommentContainer\UI\API\Requests\CreateCommentRequest;
 use App\Containers\BlogSection\CommentContainer\Values\CommentValue;
 use App\Ship\Core\Abstracts\Validators\ValidatorInterface;
@@ -22,7 +22,7 @@ class CreateCommentController extends AbstractApiController
     ) {
     }
 
-    public function __invoke(Request $request): CommentInterface
+    public function __invoke(Request $request): Comment
     {
         $createCommentRequest = CreateCommentRequest::createFromRequest($request); // TODO: refactor it
         $this->validator->validate($createCommentRequest);

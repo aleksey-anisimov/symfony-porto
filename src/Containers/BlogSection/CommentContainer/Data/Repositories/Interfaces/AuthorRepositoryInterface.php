@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\CommentContainer\Data\Repositories\Interfaces;
 
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
+use App\Containers\BlogSection\CommentContainer\Models\Author;
 
 interface AuthorRepositoryInterface
 {
-    public function findById(string $id): ?AuthorInterface;
+    public function findById(string $id): ?Author;
 
-    public function save(AuthorInterface $author): void;
+    public function save(Author $author): void;
 }

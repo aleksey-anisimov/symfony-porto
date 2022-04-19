@@ -6,7 +6,6 @@ namespace App\Containers\BlogSection\CommentContainer\Actions;
 
 use App\Containers\BlogSection\CommentContainer\Actions\Interfaces\CreateOrUpdateAuthorActionInterface;
 use App\Containers\BlogSection\CommentContainer\Models\Author;
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
 use App\Containers\BlogSection\CommentContainer\Tasks\Interfaces\SaveAuthorTaskInterface;
 use App\Containers\BlogSection\CommentContainer\Values\AuthorValue;
@@ -20,7 +19,7 @@ class CreateOrUpdateAuthorAction extends AbstractAction implements CreateOrUpdat
     ) {
     }
 
-    public function run(AuthorValue $authorValue): AuthorInterface
+    public function run(AuthorValue $authorValue): Author
     {
         $author = $this->getAuthorByIdAction->run($authorValue->getId()) ?: new Author($authorValue->getId());
         $author->setFirstname($authorValue->getFirstname());

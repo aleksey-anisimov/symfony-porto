@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\CommentContainer\Models;
 
-use App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface;
 use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'blog_section_comment_container_author')]
-class Author extends AbstractModel implements AuthorInterface
+class Author extends AbstractModel
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', unique: true)]
@@ -35,7 +34,7 @@ class Author extends AbstractModel implements AuthorInterface
         return $this->firstname;
     }
 
-    public function setFirstname(?string $firstname): AuthorInterface
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
