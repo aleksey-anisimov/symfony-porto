@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\UI\API\Responses;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Ship\Parents\Responses\AbstractResponse;
 
 class ArticleResponse extends AbstractResponse
@@ -17,7 +17,7 @@ class ArticleResponse extends AbstractResponse
 
     public ?string $authorId = null;
 
-    public static function fromModel(ArticleInterface $article): self
+    public static function fromModel(Article $article): self
     {
         $articleResponse = new self();
         $articleResponse->id = $article->getId();

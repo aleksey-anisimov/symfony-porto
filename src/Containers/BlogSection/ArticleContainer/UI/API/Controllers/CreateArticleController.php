@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\API\Controllers;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\UI\API\Requests\CreateArticleRequest;
 use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
 use App\Ship\Core\Abstracts\Validators\ValidatorInterface;
@@ -22,7 +22,7 @@ class CreateArticleController extends AbstractApiController
     ) {
     }
 
-    public function __invoke(Request $request): ArticleInterface
+    public function __invoke(Request $request): Article
     {
         $createArticleRequest = CreateArticleRequest::createFromRequest($request); // TODO: refactor it
         $this->validator->validate($createArticleRequest);

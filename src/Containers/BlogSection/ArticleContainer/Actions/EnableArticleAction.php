@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\Actions;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\EnableArticleActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
 
 class EnableArticleAction implements EnableArticleActionInterface
@@ -17,9 +17,9 @@ class EnableArticleAction implements EnableArticleActionInterface
         $this->saveArticleTask = $saveArticleTask;
     }
 
-    public function run(ArticleInterface $article): void
+    public function run(Article $article): void
     {
-        $article->setDisabled(false);
+        $article->enable();
 
         $this->saveArticleTask->run($article);
     }

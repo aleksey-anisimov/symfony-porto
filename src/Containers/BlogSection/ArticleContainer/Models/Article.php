@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Models;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
 use App\Ship\Parents\Models\AbstractModel;
 
-class Article extends AbstractModel implements ArticleInterface
+class Article extends AbstractModel
 {
     private bool $disabled = false;
 
@@ -16,7 +14,7 @@ class Article extends AbstractModel implements ArticleInterface
         private string $id,
         private ?string $title,
         private ?string $text,
-        private AuthorInterface $author
+        private Author $author
     ) {
     }
 
@@ -30,7 +28,7 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->title;
     }
 
-    public function changeTitle(string $title): ArticleInterface
+    public function changeTitle(string $title): self
     {
         $this->title = $title;
 
@@ -42,14 +40,14 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->text;
     }
 
-    public function changeText(string $text): ArticleInterface
+    public function changeText(string $text): self
     {
         $this->text = $text;
 
         return $this;
     }
 
-    public function getAuthor(): AuthorInterface
+    public function getAuthor(): Author
     {
         return $this->author;
     }
@@ -59,14 +57,14 @@ class Article extends AbstractModel implements ArticleInterface
         return $this->disabled;
     }
 
-    public function disable(): ArticleInterface
+    public function disable(): self
     {
         $this->disabled = true;
 
         return $this;
     }
 
-    public function enable(): ArticleInterface
+    public function enable(): self
     {
         $this->disabled = false;
 

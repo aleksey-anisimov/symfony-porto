@@ -6,7 +6,6 @@ namespace App\Containers\BlogSection\ArticleContainer\Actions;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\CreateArticleActionInterface;
 use App\Containers\BlogSection\ArticleContainer\Models\Article;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
 use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
@@ -19,7 +18,7 @@ class CreateArticleAction implements CreateArticleActionInterface
     ) {
     }
 
-    public function run(CreateArticleValue $articleValue): ArticleInterface
+    public function run(CreateArticleValue $articleValue): Article
     {
         $article = new Article();
         $article->setTitle($articleValue->getTitle());

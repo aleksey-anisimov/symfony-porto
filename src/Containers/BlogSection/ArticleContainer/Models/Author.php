@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Models;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
 use App\Ship\Parents\Models\AbstractModel;
 
-class Author extends AbstractModel implements AuthorInterface
+class Author extends AbstractModel
 {
     public function __construct(private string $id, private ?string $firstname)
     {

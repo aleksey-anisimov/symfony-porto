@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\BlogSection\ArticleContainer\UI\API\Controllers;
 
 use App\Containers\BlogSection\ArticleContainer\Actions\Interfaces\GetArticlesActionInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
+use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\UI\API\Responses\ArticleResponse;
 use App\Ship\Core\Abstracts\Http\JsonResponse;
 use App\Ship\Parents\Controllers\AbstractApiController;
@@ -27,7 +27,7 @@ class GetArticlesController extends AbstractApiController
         $articles = $this->getArticlesAction->run();
 
         $response = array_map( // TODO: use data transformer
-            static function (ArticleInterface $article) {
+            static function (Article $article) {
                 return ArticleResponse::fromModel($article);
             },
             $articles
