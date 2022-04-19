@@ -23,6 +23,7 @@ class ArticleEntityNormalizer implements NormalizerInterface
             'title' => $object->getTitle(),
             'text' => $object->getText(),
             'author' => $this->authorEntityNormalizer->normalize($object->getAuthor()),
+            'disabled' => $object->isDisabled(),
         ];
     }
 

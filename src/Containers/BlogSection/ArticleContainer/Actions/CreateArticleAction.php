@@ -9,6 +9,7 @@ use App\Containers\BlogSection\ArticleContainer\Models\Article;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\GetAuthorByIdTaskInterface;
 use App\Containers\BlogSection\ArticleContainer\Tasks\Interfaces\SaveArticleTaskInterface;
 use App\Containers\BlogSection\ArticleContainer\Values\CreateArticleValue;
+use App\Ship\Core\Generators\UuidGenerator;
 
 class CreateArticleAction implements CreateArticleActionInterface
 {
@@ -20,10 +21,12 @@ class CreateArticleAction implements CreateArticleActionInterface
 
     public function run(CreateArticleValue $articleValue): Article
     {
-        $article = new Article();
-        $article->setTitle($articleValue->getTitle());
-        $article->setText($articleValue->getText());
-        $article->setAuthor($this->getAuthorByIdTask->run($articleValue->getAuthorId()));
+        $article = new Article(
+            UuidGenerator::uuidString(null),
+            $articleValue->getTitle(),
+            $articleValue->getText(),
+            $this->getAuthorByIdTask->run($articleValue->getAuthorId())
+        );
 
         $this->saveArticleTask->run($article);
 
