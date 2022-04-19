@@ -4,27 +4,25 @@ declare(strict_types=1);
 
 namespace App\Containers\AccountingSection\TransactionContainer\Models;
 
-use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\AccountInterface;
-use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'accounting_section_transaction_container_transaction')]
-class Transaction extends AbstractModel implements TransactionInterface
+class Transaction extends AbstractModel
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', unique: true)]
     private string $id;
 
-    #[ORM\ManyToOne(targetEntity: AccountInterface::class)]
+    #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'source_account_id', nullable: false)]
-    private AccountInterface $source;
+    private Account $source;
 
-    #[ORM\ManyToOne(targetEntity: AccountInterface::class)]
+    #[ORM\ManyToOne(targetEntity: Account::class)]
     #[ORM\JoinColumn(name: 'source_destination_id', nullable: false)]
-    private AccountInterface $destination;
+    private Account $destination;
 
     #[ORM\Column(type: 'string')]
     private string $comment = '';
@@ -42,24 +40,24 @@ class Transaction extends AbstractModel implements TransactionInterface
         return $this->id;
     }
 
-    public function getSource(): AccountInterface
+    public function getSource(): Account
     {
         return $this->source;
     }
 
-    public function setSource(AccountInterface $source): TransactionInterface
+    public function setSource(Account $source): Transaction
     {
         $this->source = $source;
 
         return $this;
     }
 
-    public function getDestination(): AccountInterface
+    public function getDestination(): Account
     {
         return $this->destination;
     }
 
-    public function setDestination(AccountInterface $destination): TransactionInterface
+    public function setDestination(Account $destination): Transaction
     {
         $this->destination = $destination;
 
@@ -71,7 +69,7 @@ class Transaction extends AbstractModel implements TransactionInterface
         return $this->comment;
     }
 
-    public function setComment(string $comment): TransactionInterface
+    public function setComment(string $comment): Transaction
     {
         $this->comment = $comment;
 
@@ -83,7 +81,7 @@ class Transaction extends AbstractModel implements TransactionInterface
         return $this->value;
     }
 
-    public function setValue(int $value): TransactionInterface
+    public function setValue(int $value): Transaction
     {
         $this->value = $value;
 

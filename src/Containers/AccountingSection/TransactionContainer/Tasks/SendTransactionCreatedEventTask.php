@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\AccountingSection\TransactionContainer\Tasks;
 
 use App\Containers\AccountingSection\TransactionContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
-use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
+use App\Containers\AccountingSection\TransactionContainer\Models\Transaction;
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\GetTransactionsSumTaskInterface;
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\SendTransactionCreatedEventTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
@@ -18,7 +18,7 @@ class SendTransactionCreatedEventTask extends AbstractTask implements SendTransa
     ) {
     }
 
-    public function run(TransactionInterface $transaction): void
+    public function run(Transaction $transaction): void
     {
         $sourceSum = $this->getTransactionsSumTask->run($transaction->getSource());
         $destinationSum = $this->getTransactionsSumTask->run($transaction->getDestination());

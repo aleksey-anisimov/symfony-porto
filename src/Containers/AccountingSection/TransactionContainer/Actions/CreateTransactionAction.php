@@ -7,7 +7,6 @@ namespace App\Containers\AccountingSection\TransactionContainer\Actions;
 use App\Containers\AccountingSection\TransactionContainer\Actions\Interfaces\CreateTransactionActionInterface;
 use App\Containers\AccountingSection\TransactionContainer\Exceptions\AccountNotFoundException;
 use App\Containers\AccountingSection\TransactionContainer\Exceptions\TransactionIsNotAllowedException;
-use App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\TransactionInterface;
 use App\Containers\AccountingSection\TransactionContainer\Models\Transaction;
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\GetAccountTaskInterface;
 use App\Containers\AccountingSection\TransactionContainer\Tasks\Interfaces\SaveTransactionTaskInterface;
@@ -28,7 +27,7 @@ class CreateTransactionAction extends AbstractAction implements CreateTransactio
     ) {
     }
 
-    public function run(TransactionValue $transactionValue): TransactionInterface
+    public function run(TransactionValue $transactionValue): Transaction
     {
         $source = $this->getAccountTask->run($transactionValue->getSourceId());
 
