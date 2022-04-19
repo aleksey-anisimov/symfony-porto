@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Containers\UserContainer\Tasks;
 
 use App\Containers\UserContainer\Data\Repositories\Interfaces\UserRepositoryInterface;
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Containers\UserContainer\Models\User;
 use App\Containers\UserContainer\Tasks\Interfaces\SaveUserTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
 
@@ -15,7 +15,7 @@ class SaveUserTask extends AbstractTask implements SaveUserTaskInterface
     {
     }
 
-    public function run(UserInterface $user): void
+    public function run(User $user): void
     {
         $this->repository->save($user);
     }

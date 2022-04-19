@@ -6,7 +6,7 @@ namespace App\Containers\UserContainer\Actions;
 
 use App\Containers\UserContainer\Actions\Interfaces\GetUserByIdActionInterface;
 use App\Containers\UserContainer\Data\Repositories\Interfaces\UserRepositoryInterface;
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Containers\UserContainer\Models\User;
 use App\Ship\Parents\Tasks\AbstractTask;
 
 class GetUserByIdAction extends AbstractTask implements GetUserByIdActionInterface
@@ -18,7 +18,7 @@ class GetUserByIdAction extends AbstractTask implements GetUserByIdActionInterfa
         $this->userRepository = $userRepository;
     }
 
-    public function run(string $id): ?UserInterface
+    public function run(string $id): ?User
     {
         return $this->userRepository->find($id);
     }

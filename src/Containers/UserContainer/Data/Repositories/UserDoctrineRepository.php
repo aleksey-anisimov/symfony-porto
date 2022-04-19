@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Containers\UserContainer\Data\Repositories;
 
 use App\Containers\UserContainer\Data\Repositories\Interfaces\UserRepositoryInterface;
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
 use App\Ship\Parents\Repositories\AbstractDoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,17 +16,17 @@ class UserDoctrineRepository extends AbstractDoctrineRepository implements UserR
         parent::__construct($registry, User::class);
     }
 
-    public function findById(string $id): ?UserInterface
+    public function findById(string $id): ?User
     {
         return $this->find($id);
     }
 
-    public function findByEmail(string $email): ?UserInterface
+    public function findByEmail(string $email): ?User
     {
         return $this->findOneBy(['email' => $email]);
     }
 
-    public function save(UserInterface $user): void
+    public function save(User $user): void
     {
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush($user);

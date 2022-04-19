@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\UserContainer\Tasks\Interfaces;
 
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Containers\UserContainer\Models\User;
 
 interface SendUserUpdatedEventTaskInterface
 {
-    public function run(UserInterface $user): void;
+    public function run(User $user): void;
 }

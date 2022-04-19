@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Containers\UserContainer\Actions;
 
 use App\Containers\UserContainer\Actions\Interfaces\CreateUserActionInterface;
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Containers\UserContainer\Models\User;
 use App\Containers\UserContainer\Tasks\Interfaces\CheckIsUserExistsTaskInterface;
 use App\Containers\UserContainer\Tasks\Interfaces\SaveUserTaskInterface;
@@ -22,7 +21,7 @@ class CreateUserAction extends AbstractTask implements CreateUserActionInterface
     ) {
     }
 
-    public function run(UserValue $userValue): UserInterface
+    public function run(UserValue $userValue): User
     {
         if (!$this->checkIsUserExistsTask->run($userValue->email)) {
             // TODO: throw UserWithSameEmailAlreadyRegisteredException

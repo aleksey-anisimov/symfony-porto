@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Containers\UserContainer\Data\Repositories\Interfaces;
 
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
+use App\Containers\UserContainer\Models\User;
 
 interface UserRepositoryInterface
 {
-    public function findById(string $id): ?UserInterface;
+    public function findById(string $id): ?User;
 
-    public function findByEmail(string $email): ?UserInterface;
+    public function findByEmail(string $email): ?User;
 
-    public function save(UserInterface $user): void;
+    public function save(User $user): void;
 }

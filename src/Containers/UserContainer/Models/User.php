@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Containers\UserContainer\Models;
 
-use App\Containers\UserContainer\Models\Interfaces\UserInterface;
 use App\Ship\Core\Generators\UuidGenerator;
 use App\Ship\Parents\Models\AbstractModel;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'user_container_user')]
-class User extends AbstractModel implements UserInterface
+class User extends AbstractModel
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', unique: true)]
