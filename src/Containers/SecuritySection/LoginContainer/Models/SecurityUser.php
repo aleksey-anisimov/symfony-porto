@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\SecuritySection\LoginContainer\Models;
 
-use App\Containers\SecuritySection\LoginContainer\Models\Interfaces\SecurityUserInterface;
 use App\Ship\Parents\Models\AbstractModel;
 
-class SecurityUser extends AbstractModel implements SecurityUserInterface
+class SecurityUser extends AbstractModel
 {
     public function __construct(private ?string $id, private string $email, private array $roles)
     {
