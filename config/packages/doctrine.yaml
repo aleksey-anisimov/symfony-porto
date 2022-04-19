@@ -26,12 +26,12 @@ doctrine:
                 is_bundle: false
                 type: attribute
                 dir: '%kernel.project_dir%/src/Containers/BlogSection/ArticleContainer/Data/Entities'
-                prefix: App\Containers\BlogSection\ArticleContainer\Models
+                prefix: App\Containers\BlogSection\ArticleContainer\Data\Entities
                 alias: blog_section_article_container
             blog_section_comment_container:
                 is_bundle: false
                 type: attribute
-                dir: '%kernel.project_dir%/src/Containers/BlogSection/CommentContainer/Data/Entities'
+                dir: '%kernel.project_dir%/src/Containers/BlogSection/CommentContainer/Models'
                 prefix: App\Containers\BlogSection\CommentContainer\Models
                 alias: blog_section_comment_container
             security_section_security_user_container:
@@ -49,7 +49,6 @@ doctrine:
         resolve_target_entities:
             App\Containers\AccountingSection\AccountContainer\Models\Interfaces\OwnerInterface: App\Containers\AccountingSection\AccountContainer\Models\Owner
             App\Containers\AccountingSection\TransactionContainer\Models\Interfaces\AccountInterface: App\Containers\AccountingSection\TransactionContainer\Models\Account
-            App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface: App\Containers\BlogSection\ArticleContainer\Models\Author
             App\Containers\BlogSection\CommentContainer\Models\Interfaces\AuthorInterface: App\Containers\BlogSection\CommentContainer\Models\Author
             App\Containers\BlogSection\CommentContainer\Models\Interfaces\ArticleInterface: App\Containers\BlogSection\CommentContainer\Models\Article
             App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface: App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser
