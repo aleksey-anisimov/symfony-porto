@@ -8,13 +8,12 @@ use App\Ship\Parents\Models\AbstractModel;
 
 class Article extends AbstractModel
 {
-    private bool $disabled = false;
-
     public function __construct(
         private string $id,
         private ?string $title,
         private ?string $text,
-        private Author $author
+        private Author $author,
+        private bool $disabled = false
     ) {
     }
 
