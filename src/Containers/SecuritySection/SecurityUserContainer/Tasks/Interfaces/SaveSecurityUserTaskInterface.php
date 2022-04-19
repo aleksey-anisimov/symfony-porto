@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\SecuritySection\SecurityUserContainer\Tasks\Interfaces;
 
-use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
+use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
 
 interface SaveSecurityUserTaskInterface
 {
-    public function run(SecurityUserInterface $securityUser): void;
+    public function run(SecurityUser $securityUser): void;
 }

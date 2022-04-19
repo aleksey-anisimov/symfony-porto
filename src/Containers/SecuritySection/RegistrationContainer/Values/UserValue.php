@@ -41,5 +41,4 @@ class UserValue extends AbstractValue
     {
         return $this->roles;
     }
-
 }

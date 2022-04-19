@@ -6,7 +6,7 @@ namespace App\Containers\SecuritySection\SecurityUserContainer\Tasks;
 
 use App\Containers\SecuritySection\SecurityUserContainer\Data\Repositories\Interfaces\SecurityUserRepositoryInterface;
 use App\Containers\SecuritySection\SecurityUserContainer\Dependencies\Interfaces\InternalEventDispatcherInterface;
-use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
+use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
 use App\Containers\SecuritySection\SecurityUserContainer\Tasks\Interfaces\SaveSecurityUserTaskInterface;
 use App\Ship\Parents\Tasks\AbstractTask;
 
@@ -18,7 +18,7 @@ class SaveSecurityUserTask extends AbstractTask implements SaveSecurityUserTaskI
     ) {
     }
 
-    public function run(SecurityUserInterface $securityUser): void
+    public function run(SecurityUser $securityUser): void
     {
         $this->repository->save($securityUser);
 

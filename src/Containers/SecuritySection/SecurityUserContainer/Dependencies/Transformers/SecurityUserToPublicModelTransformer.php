@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Containers\SecuritySection\SecurityUserContainer\Dependencies\Transformers;
 
 use App\Containers\SecuritySection\SecurityUserContainer\Dependencies\Model\SecurityUserPublic;
-use App\Containers\SecuritySection\SecurityUserContainer\Models\Interfaces\SecurityUserInterface;
+use App\Containers\SecuritySection\SecurityUserContainer\Models\SecurityUser;
 
 class SecurityUserToPublicModelTransformer
 {
-    public function toPublicModel(SecurityUserInterface $securityUser): SecurityUserPublic
+    public function toPublicModel(SecurityUser $securityUser): SecurityUserPublic
     {
         $securityUserPublic = new SecurityUserPublic();
         $securityUserPublic->id = $securityUser->getId();
