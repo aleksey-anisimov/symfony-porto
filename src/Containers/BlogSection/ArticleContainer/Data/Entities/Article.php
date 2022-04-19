@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace App\Containers\BlogSection\ArticleContainer\Data\Entities;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\ArticleInterface;
-use App\Containers\BlogSection\ArticleContainer\Models\Interfaces\AuthorInterface;
-use App\Ship\Core\Generators\UuidGenerator;
-use App\Ship\Parents\Models\AbstractModel;
+use App\Ship\Parents\Entities\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'blog_section_article_container_article')]
-class Article
+class Article extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'string', unique: true)]
@@ -24,24 +21,16 @@ class Article
     #[ORM\Column(type: 'text')]
     private ?string $text = null;
 
-    #[ORM\ManyToOne(targetEntity: AuthorInterface::class)]
+    #[ORM\ManyToOne(targetEntity: Author::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private AuthorInterface $author;
+    private Author $author;
 
     #[ORM\Column(type: 'boolean')]
     private bool $disabled = false;
 
-    private function __construct()
+    public function __construct(?string $id = null)
     {
-    }
-
-    public static function createFromModel(ArticleInterface $article): self
-    {
-        $entity = new self();
-        $entity->setId($article->getId());
-        $entity->setFirstname($article->getFirstname());
-
-        return $entity;
+        $this->id = $id;
     }
 
     public function getId(): string
@@ -49,12 +38,19 @@ class Article
         return $this->id;
     }
 
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): ArticleInterface
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -66,21 +62,21 @@ class Article
         return $this->text;
     }
 
-    public function setText(string $text): ArticleInterface
+    public function setText(string $text): self
     {
         $this->text = $text;
 
         return $this;
     }
 
-    public function setAuthor(AuthorInterface $author): ArticleInterface
+    public function setAuthor(Author $author): self
     {
         $this->author = $author;
 
         return $this;
     }
 
-    public function getAuthor(): AuthorInterface
+    public function getAuthor(): Author
     {
         return $this->author;
     }
@@ -90,7 +86,7 @@ class Article
         return $this->disabled;
     }
 
-    public function setDisabled(bool $disabled): ArticleInterface
+    public function setDisabled(bool $disabled): self
     {
         $this->disabled = $disabled;
 

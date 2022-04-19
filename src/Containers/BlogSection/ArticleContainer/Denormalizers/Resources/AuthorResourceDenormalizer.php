@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Denormalizers;
+namespace App\Containers\BlogSection\ArticleContainer\Denormalizers\Resources;
 
 use App\Containers\BlogSection\ArticleContainer\UI\ApiPlatform\Resources\AuthorResource;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Containers\BlogSection\ArticleContainer\Normalizers;
+namespace App\Containers\BlogSection\ArticleContainer\Normalizers\Entities;
 
-use App\Containers\BlogSection\ArticleContainer\Models\Article;
+use App\Containers\BlogSection\ArticleContainer\Data\Entities\Article;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ArticleModelNormalizer implements NormalizerInterface
+class ArticleEntityNormalizer implements NormalizerInterface
 {
-    public function __construct(private AuthorModelNormalizer $authorModelNormalizer)
+    public function __construct(private AuthorEntityNormalizer $authorEntityNormalizer)
     {
     }
 
@@ -22,7 +22,7 @@ class ArticleModelNormalizer implements NormalizerInterface
             'id' => $object->getId(),
             'title' => $object->getTitle(),
             'text' => $object->getText(),
-            'author' => $this->authorModelNormalizer->normalize($object->getAuthor()),
+            'author' => $this->authorEntityNormalizer->normalize($object->getAuthor()),
         ];
     }
 
